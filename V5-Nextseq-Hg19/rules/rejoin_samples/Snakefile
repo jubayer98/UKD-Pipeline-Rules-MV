@@ -1,0 +1,74 @@
+# DNA material of a sample might be split and loaded into several lanes to
+# increase coverage. We here use information from SampleSheet and merge fastq.gz
+# files from demultiplexing if necessary, otherwise we just use soft links
+
+rule rejoin_sample:
+    input:
+        lambda wildcards: get_rejoin_input(wildcards.prefix, wildcards.sample, wildcards.direction, SAMPLESHEETS, config, _type='dirs')
+    output:
+        "{prefix}%s%s/{sample, .*?}_{direction,R[1|2]}.fastq.gz" % (config['dirs']['intermediate'], config['stepnames']['rejoin_samples'])
+    log:
+        "{prefix}%s%s/{sample}_{direction}.log" % (config['dirs']['logs'], config['stepnames']['rejoin_samples'])
+    benchmark:
+        "{prefix}%s%s/{sample}_{direction}.benchmark" % (config['dirs']['benchmarks'], config['stepnames']['rejoin_samples'])
+    conda:
+        "envs/spike_rejoin.yaml"
+    threads:
+        1
+    params:
+        single_fastqs=lambda wildcards: get_rejoin_input(wildcards.prefix, wildcards.sample, wildcards.direction, SAMPLESHEETS, config, _type='files')
+    shell:
+        'if [[ $(echo "{params.single_fastqs}" | wc -w) -gt 1 ]]; then'
+        # you can just concatenate multiple *.gz files into one, while
+        # content when decompressed remains the same!
+        # NO, you cannot!
+        #' cat {params.single_fastqs} > {output} 2> {log};'
+        ' zcat {params.single_fastqs}'
+        ' | pigz --blocksize 1024 -6 --stdout -p {threads}'
+        ' | dd > {output} 2>> {log}; '
+        ' else'
+        ' cp -l -v {params.single_fastqs} {output} 2> {log} 1>&2;'
+        ' chmod u+w {output} 2>> {log};'
+        ' fi;'
+
+
+rule fastqc:
+    input:
+        forward="%s%s%s/{sample}_R1.fastq.gz" % (config['dirs']['prefix'],config['dirs']['intermediate'], config['stepnames']['rejoin_samples']),
+        reverse="%s%s%s/{sample}_R2.fastq.gz" % (config['dirs']['prefix'],config['dirs']['intermediate'], config['stepnames']['rejoin_samples']),
+    output:
+        "{prefix}%s%s/{run}/determined/fastqc/{sample}_R1_fastqc.zip" % (config['dirs']['intermediate'], config['stepnames']['Fastqc']),
+        "{prefix}%s%s/{run}/determined/fastqc/{sample}_R2_fastqc.zip" % (config['dirs']['intermediate'], config['stepnames']['Fastqc']),
+        "{prefix}%s%s/{run}/determined/fastqc/{sample}_R1_fastqc.html" % (config['dirs']['intermediate'], config['stepnames']['Fastqc']),
+        "{prefix}%s%s/{run}/determined/fastqc/{sample}_R2_fastqc.html" % (config['dirs']['intermediate'], config['stepnames']['Fastqc']),
+    log:
+        "{prefix}%s%s/{run}/{sample}.log" % (config['dirs']['logs'], config['stepnames']['Fastqc'])
+    conda:
+        "envs/qc.yaml"
+    threads:
+         4
+    params:
+        directory("{prefix}%s%s/{run}/determined/fastqc/Keimbahn/" % (config['dirs']['intermediate'], config['stepnames']['Fastqc']))
+    shell:
+        "fastqc -o {params} {input.forward} {input.reverse} -t {threads}"
+        " 2> {log}"
+
+
+rule multiqc:
+        input:
+            forward1=["%s%s%s/{run}/determined/fastqc/%s_R1_fastqc.html" % (config['dirs']['prefix'],config['dirs']['intermediate'], config['stepnames']['Fastqc'], sample)
+                    for sample in set(map(lambda x: x['sample'], get_samples(SAMPLESHEETS, config)))],
+            reverse1=["%s%s%s/{run}/determined/fastqc/%s_R2_fastqc.html" % (config['dirs']['prefix'],config['dirs']['intermediate'], config['stepnames']['Fastqc'], sample)
+                    for sample in set(map(lambda x: x['sample'], get_samples(SAMPLESHEETS, config)))],
+        output:
+            "%s%s%s/{run}/determined/multiqc/Keimbahn/multiqc_report.html" % (config['dirs']['prefix'],config['dirs']['intermediate'], config['stepnames']['Fastqc']),
+        log:
+            "%s%s%s/multiqc/{run}.log" % (config['dirs']['prefix'],config['dirs']['logs'], config['stepnames']['Fastqc']),
+        conda:
+            "envs/qc.yaml"
+        params:
+            out=directory("%s%s%s/{run}/determined/multiqc/" % (config['dirs']['prefix'],config['dirs']['intermediate'], config['stepnames']['Fastqc'])),
+            inp=directory("%s%s%s/{run}/determined/fastqc/Keimbahn/" % (config['dirs']['prefix'],config['dirs']['intermediate'], config['stepnames']['Fastqc'])),
+        shell:
+            "multiqc  -o {params.out} {params.inp}"
+            " 2> {log}"

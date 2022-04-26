@@ -1,0 +1,449 @@
+directions:
+  - 'R1'
+  - 'R2'
+endings_bwa:
+   - '.fasta' # '.fna'
+   - '.dict'
+   - '.fasta.amb'
+   - '.fasta.ann'
+   - '.fasta.bwt'
+   - '.fasta.fai'
+   - '.fasta.pac'
+   - '.fasta.sa'
+
+mail_attachment_parameter: "-A"
+
+emails:
+  demultiplexreport: "deyazoubi@gmail.com,Layal.Yasin@med.uni-duesseldorf.de,stefan.m.janssen@gmail.com,Alemazkour@med.uni-duesseldorf.de,Frauke.Meyer@med.uni-duesseldorf.de,Daniel.Scholtyssik@med.uni-duesseldorf.de"
+  backup_validated: "deyazoubi@gmail.com,Layal.Yasin@med.uni-duesseldorf.de,stefan.m.janssen@gmail.com,Alemazkour@med.uni-duesseldorf.de,Frauke.Meyer@med.uni-duesseldorf.de,Daniel.Scholtyssik@med.uni-duesseldorf.de"
+
+name_program: "spike"
+
+dirs:
+  prefix: "/gpfs/project/projects/spike/AG_Borkhardt/"
+  tmpdir: ""
+
+  intermediate: "Intermediate/"
+  inputs: "Inputs/"
+  references: "References/"
+
+  samplesheets: "SampleSheets/"
+  rawillumina: "Raw_Illumina/"
+  persamplefastq: "PerSampleFastq/"
+  genepanels: "Genepanels/"
+  benchmarks: "Benchmarks/"
+  logs: "Logs/"
+
+stepnames:
+  check_complete: "005_check_complete"
+
+  backup_compress: "010_backup_compress"
+  backup_transfer: "015_backup_transfer"
+  backup_validate: "020_backup_validate"
+
+  split_demultiplex: "024_split_demultiplex"
+  demultiplex: "025_demultiplex"
+  join_demultiplex: "026_join_demultiplex"
+  yield_report: "027_yield_report"
+  convert_illumina_report: "030_convert_illumina_report"
+  rejoin_samples: "035_rejoin_samples"
+  trim: "040_trim"
+  remove_16s_primer: "041_remove_16s_primer"
+  xenograft_bwa_aln: "045_xenograft_bwa_aln"
+  xenograft_bwa_sampe: "050_xenograft_bwa_sampe"
+  xenograft_check: "055_xenograft_check"
+  map: "060_map"
+  nodup: "065_remove_pcr_duplicates"
+  UMI: "066_MBC_remove_duplicates"
+  gatk_RealignerTargetCreator: "070_gatk_RealignerTargetCreator"
+  gatk_IndelRealigner: "075_gatk_IndelRealigner"
+  #gatk_BaseRecalibrator: "080_gatk_BaseRecalibrator"
+  gatk4_BaseRecalibrator: "081_gatk4_BaseRecalibrator"
+  gatk4_ApplyBQSR: "084_gatk4_ApplyBQSR"  
+  #gatk_PrintReads: "085_gatk_PrintReads"
+  qualimap: "087_qualimap" 
+  exome_coverage: "090_exome_coverage"
+  bamstat: "091_bamstat"
+  genepanel_coverage: "092_genepanel_coverage"
+  gatk_HaplotypeCaller: "095_gatk_HaplotypeCaller"
+  gatk_SelectVariants: "100_gatk_SelectVariants"
+  gatk_VariantRecalibrator: "105_gatk_VariantRecalibrator"
+  gatk_ApplyRecalibration: "110_gatk_ApplyRecalibration"
+  gatk_VariantFiltration: "115_gatk_VariantFiltration"
+  gatk_CombineVariants: "120_gatk_CombineVariants"
+  biom_gatkbackground: "121_biom_gatkbackground"
+  biom_merged: "122_biom_merged"
+  platypus: "125_platypus"
+  platypus_filtered: "130_platypus_filtered"
+
+  # trio
+  varscan_trio: "135_varscan_trio"
+  varscan_filter: "140_varscan_filter"
+  bam_readcount: "145_bam_readcount"
+  varscan_fpfilter: "150_varscan_fpfilter"
+  correct_genotypes: "155_correct_genotypes"
+  merge_vcfs: "160_merge_vcfs"
+  writing_headers: "165_writing_headers"
+
+  # somatic
+  mutect: "170_mutect"
+  samtools_mpileup: "172_samtools_mpileup"
+  varscan_somatic: "175_varscan_somatic"
+  varscan_processSomatic: "180_varscan_processSomatic"
+  bam_readcount_somatic: "185_bam_readcount_somatic"
+
+  somatic_FPfilter: "190_somatic_FPfilter"
+  somatic_reduce: "195_somatic_reduce"
+  vcf_annotate: "200_vcf_annotate"
+  merge_somatic: "205_merge_somatic"
+
+  excavator_install: "210_excavator_install"
+  excavator_dataprepare: "215_excavator_dataprepare"
+  excavator_somatic: "220_excavator_somatic"
+  excavator_trio: "225_excavator_trio"
+
+  # upload to snupy
+  snupy_upload: "500_snupy_upload"
+  snupy_extractsamples: "505_snupy_extractsamples"
+
+  # currently unused
+  aggregate_undetermined_filesizes: "000_aggregate_undetermined_filesizes"
+  check_undetermined_filesizes: "000_check_undetermined_filesizes"
+  gatk_DepthOfCoverage: "00_gatk_DepthOfCoverage"
+  freec: "000_freec"
+  check_coverage: "000_check_coverage"
+
+gatk:
+  HaplotypeCallerQualityArguments: " -stand_call_conf 50.0 -stand_emit_conf 50.0 "
+
+xenograft:
+  references:
+    mus musculus: 'GRCm'
+    homo sapiens: 'GRCh'
+
+projects:
+  Alps:
+    species: homo sapiens
+    snupy:
+      bonn:
+        contact: "Ute Fischer"
+        project_id: 19
+      hhu:
+        contact: "Ute Fischer"
+        project_id: 2
+    genepanels:
+      - Sujal_Gosh
+  Canada_Reid:
+    species: mus musculus
+    snupy:
+      bonn:
+        contact: "Marina Oldenburg"
+        project_id: 123
+  Fischer_Geron:
+    species: homo sapiens
+    xenograft: "GRCh_GRCm_filtering_hybrid.fa"
+  Maus_Hauer:
+    species: mus musculus
+    snupy:
+      bonn:
+        contact: "Julia Hauer"
+        project_id: 109
+      hhu:
+        contact: "Julia Hauer"
+        project_id: 4
+    genepanels:
+      - mouse_biofilm
+  AG_Remke:
+  ARA_Maus:
+  AG_Remke_GAC_LT:
+    species: homo sapiens
+    snupy:
+      bonn:
+        contact: "Nan Qin"
+        project_id: 131
+  Keimbahn:
+    species: homo sapiens
+    snupy:
+      bonn:
+        contact: "Kuhlen"
+        project_id: 82
+      hhu:
+        contact: "Layal Jasin"
+        project_id: 1
+    min_coverage: 60
+    known_duos:
+      - KB0005
+      - KB0009
+      - KB0025
+      - KB0043
+      - KB0062
+      - KB0067
+      - KB0069
+      - KB0076
+      - KB0077
+      - KB0092
+      - KB0106
+      - KB0136
+      - KB0145
+      - KB0146
+      - KB0147
+      - KB0174
+      - KB0190
+    genepanels:
+      - Triantafyllia_Brozou
+  ALL_family_LB:
+    species: homo sapiens
+    capture_kit: SureSelect Human All Exon V6 r2
+  Translokation_t7_12_Hauer:
+    species: homo sapiens
+    snupy:
+      hhu:
+        contact: "Sanil Bhatia"
+        project_id: 3
+  Kit_Test:
+    species: homo sapiens
+    capture_kit: SureSelect Human All Exon V7
+  ALL_Study1_Hauer:
+    species: homo sapiens
+  microbiome_mouse_pax5_prj2:
+    species: mus musculus
+  ETV6_RUNX1:
+    species: homo sapiens
+    snupy:
+      hhu:
+        contact: "Ute Fischer"
+        project_id: 8
+    min_coverage: 60
+  Bhatia:
+    species: homo sapiens
+    snupy:
+      hhu:
+        contact: "Sanil Bhatia"
+        project_id: 11
+    min_coverage: 60
+ 
+sample_aliases:
+  - real_id:
+      Sample_ID: 'HL_rem'
+      Sample_Project: 'ALL_Study1_Hauer'
+    roles:
+      - Sample_ID: 'KB0011_c'
+        Sample_Project: 'Keimbahn'
+        spike_entity_id: 'KB0011'
+        spike_entity_role: 'patient'
+  - real_id:
+      Sample_ID: 'HL_ini'
+      Sample_Project: 'ALL_Study1_Hauer'
+    roles:
+      - Sample_ID: 'KB0011_c_t'
+        Sample_Project: 'Keimbahn'
+        spike_entity_id: 'KB0011'
+        spike_entity_role: 'tumor_patient'
+  - real_id:
+      Sample_ID: 'ALPS_60'
+      Sample_Project: 'Alps'
+    roles:
+      - Sample_ID: 'KB0195_s1'
+        Sample_Project: 'Keimbahn'
+        spike_entity_id: 'KB0195'
+        spike_entity_role: 'sibling'
+  - real_id:
+      Sample_ID: 'ALPS_60a'
+      Sample_Project: 'Alps'
+    roles:
+      - Sample_ID: 'KB0195_f'
+        Sample_Project: 'Keimbahn'
+        spike_entity_id: 'KB0195'
+        spike_entity_role: 'father'
+  - real_id:
+      Sample_ID: 'ALPS_60b'
+      Sample_Project: 'Alps'
+    roles:
+      - Sample_ID: 'KB0195_m'
+        Sample_Project: 'Keimbahn'
+        spike_entity_id: 'KB0195'
+        spike_entity_role: 'mother'
+
+
+references:
+  genomes:
+    homo sapiens:
+      file: 'Homo_sapiens.GRCh38.dna.chromosome.all'#'GRCh38' #'Homo_sapiens_assembly38'  # without .fa!
+      #lengths: 'hGRC37.len'
+      #gemMappabilityFile: 'hGRC37.mappability.mappability'
+      #chromosomes:
+        #- "hGRC37_chromosomes/1.fa"
+        #- "hGRC37_chromosomes/2.fa"
+        #- "hGRC37_chromosomes/3.fa"
+        #- "hGRC37_chromosomes/4.fa"
+        #- "hGRC37_chromosomes/5.fa"
+        #- "hGRC37_chromosomes/6.fa"
+        #- "hGRC37_chromosomes/7.fa"
+        #- "hGRC37_chromosomes/8.fa"
+        #- "hGRC37_chromosomes/9.fa"
+        #- "hGRC37_chromosomes/10.fa"
+        #- "hGRC37_chromosomes/11.fa"
+        #- "hGRC37_chromosomes/12.fa"
+        #- "hGRC37_chromosomes/13.fa"
+        #- "hGRC37_chromosomes/14.fa"
+        #- "hGRC37_chromosomes/15.fa"
+        #- "hGRC37_chromosomes/16.fa"
+        #- "hGRC37_chromosomes/17.fa"
+        #- "hGRC37_chromosomes/18.fa"
+        #- "hGRC37_chromosomes/19.fa"
+        #- "hGRC37_chromosomes/20.fa"
+        #- "hGRC37_chromosomes/21.fa"
+        #- "hGRC37_chromosomes/22.fa"
+        #- "hGRC37_chromosomes/X.fa"
+       # - "hGRC37_chromosomes/Y.fa"
+      #SNPfile: "hg19_deCHRd_snp137.SingleDiNucl.1based.txt"
+      #cosmic: "CosmicCodingMuts_v63_300113.vcf" 
+    mus musculus:
+      file: 'Mus_musculus.GRCm38.71.dna'  # without .fa!
+      lengths: 'GRCm38.71.len'
+      gemMappabilityFile: 'Mus_musculus.GRCm38.71.dna.fa.index.gem.mappability.mappability'
+      chromosomes:
+        - "GRCm38.71_chromosomes/Mus_musculus.GRCm38.71.dna.chromosome.1.fa"
+        - "GRCm38.71_chromosomes/Mus_musculus.GRCm38.71.dna.chromosome.2.fa"
+        - "GRCm38.71_chromosomes/Mus_musculus.GRCm38.71.dna.chromosome.3.fa"
+        - "GRCm38.71_chromosomes/Mus_musculus.GRCm38.71.dna.chromosome.4.fa"
+        - "GRCm38.71_chromosomes/Mus_musculus.GRCm38.71.dna.chromosome.5.fa"
+        - "GRCm38.71_chromosomes/Mus_musculus.GRCm38.71.dna.chromosome.6.fa"
+        - "GRCm38.71_chromosomes/Mus_musculus.GRCm38.71.dna.chromosome.7.fa"
+        - "GRCm38.71_chromosomes/Mus_musculus.GRCm38.71.dna.chromosome.8.fa"
+        - "GRCm38.71_chromosomes/Mus_musculus.GRCm38.71.dna.chromosome.9.fa"
+        - "GRCm38.71_chromosomes/Mus_musculus.GRCm38.71.dna.chromosome.10.fa"
+        - "GRCm38.71_chromosomes/Mus_musculus.GRCm38.71.dna.chromosome.11.fa"
+        - "GRCm38.71_chromosomes/Mus_musculus.GRCm38.71.dna.chromosome.12.fa"
+        - "GRCm38.71_chromosomes/Mus_musculus.GRCm38.71.dna.chromosome.13.fa"
+        - "GRCm38.71_chromosomes/Mus_musculus.GRCm38.71.dna.chromosome.14.fa"
+        - "GRCm38.71_chromosomes/Mus_musculus.GRCm38.71.dna.chromosome.15.fa"
+        - "GRCm38.71_chromosomes/Mus_musculus.GRCm38.71.dna.chromosome.16.fa"
+        - "GRCm38.71_chromosomes/Mus_musculus.GRCm38.71.dna.chromosome.17.fa"
+        - "GRCm38.71_chromosomes/Mus_musculus.GRCm38.71.dna.chromosome.18.fa"
+        - "GRCm38.71_chromosomes/Mus_musculus.GRCm38.71.dna.chromosome.19.fa"
+        - "GRCm38.71_chromosomes/Mus_musculus.GRCm38.71.dna.chromosome.X.fa"
+        - "GRCm38.71_chromosomes/Mus_musculus.GRCm38.71.dna.chromosome.Y.fa"
+      SNPfile: "UCSC_mm10_dechr_reorder_nomult_sort_for_freec.txt"
+      cosmic:
+  knowns:
+    homo sapiens:
+      - file:  "Mills_and_1000G_gold_standard.indels.hg38.fixed.vcf.gz"
+        #RealignerTargetCreator: "yes"
+        BaseRecalibrator: 'yes'
+        #VariantRecalibrator_SNP: "mills,VCF,known=false,training=true,truth=true,prior=12.0"
+        #VariantRecalibrator_INDEL: "mills,known=true,training=true,truth=true,prior=12.0"
+
+      - file: "1000G_phase1.indels.b37.vcf"
+        #RealignerTargetCreator: "yes"
+        #BaseRecalibrator: 'yes'
+        #VariantRecalibrator_INDEL: "1000G,known=false,training=true,truth=false,prior=10.0"
+
+      - file: "hapmap_3.3.b37.vcf"
+        #VariantRecalibrator_SNP: "hapmap,VCF,known=false,training=true,truth=true,prior=12.0"
+
+      - file: "1000G_phase1.snps.high_confidence.hg38.fixed.vcf.gz"
+        #VariantRecalibrator_SNP: "omni,VCF,known=false,training=true,truth=false,prior=10.0"
+        BaseRecalibrator: 'yes'
+
+      - file: "1000G_omni2.5.b37.vcf"
+        #VariantRecalibrator_SNP: "omni,VCF,known=false,training=true,truth=false,prior=12.0"
+
+      - file: "Homo_sapiens_assembly38.known_indels.fixed.vcf.gz"
+        BaseRecalibrator: 'yes'
+        #mutect:
+
+      - file: "dbsnp_138.hg38.fixed.vcf.gz"
+        BaseRecalibrator: 'yes'
+        #VariantRecalibrator_SNP: "dbsnp,VCF,known=true,training=false,truth=false,prior=2.0"
+    mus musculus:
+      - file: "C57BL6NJ_CBAJDBA2.indels.vcf.gz"
+        RealignerTargetCreator: "yes"
+        BaseRecalibrator: 'yes'
+        VariantRecalibrator_INDEL: "mgpindels,known=true,training=true,truth=true,prior=12.0"
+
+      - file: "Mus_musculus.ref_clean.vcf.gz.recode.vcf.gz"
+        BaseRecalibrator: 'yes'
+        VariantRecalibrator_SNP: "mouse_dbsnp,VCF,known=true,training=true,truth=false,prior=8.0"
+        mutect:
+
+      - file: "C57BL6NJ.genoc5.ref.snp.vcf.gz.recode.vcf.gz"
+        VariantRecalibrator_SNP: "C58BL6NJ_snps,VCF,known=false,training=true,truth=true,prior=12.0"
+
+      - file: "CBAJDBA2.genoc7.ref.snp.recode.vcf.gz"
+        VariantRecalibrator_SNP: "CBAJDBA2_snps,VCF,known=false,training=true,truth=true,prior=12.0"
+  capture_kits:
+    SureSelect Human All Exon V5+UTRs:
+      file: "Target_region.Hg38_V5_UTRs.bed" #"Agilent_SureSelect_V5plusUTR.bed"
+      protocol_name: "SureSelectXTV5plusUTRautomated"
+      agilent_coverage_file: "S04380219_Covered.bed"
+      #default_for_species: "homo sapiens"
+    SureSelect Human All Exon V6 r2:
+      file: "Agilent_SureSelect_Human_AllExon_V6_r2.hGRC37.Covered.bed"
+      protocol_name: "SureSelectHumanAllExonV6r2"
+      agilent_coverage_file: "S07604514_Covered.bed"
+    SureSelect Human All Exon V7:
+      file: "Covered_region.Hg38_V7.bed" #"Target_Region_Hg38_V7.bed" #"Covered_region.Hg38_V7.bed" #"Target_region.Hg38_V7.bed" #"Agilent_SureSelect_Human_AllExon_V7.GRCh38.Covered.bed"
+      protocol_name: "SureSelectHumanAllExonV7"
+      agilent_coverage_file: "S31285117_Covered.Hg38.bed"
+      qualimap_bed: "Target_Region_Hg38_V7_qualimap.bed"
+      bamstats_bed: "Target_Region_Hg38_V7_bamstats.bed"
+      default_for_species: "homo sapiens"
+    SureSelect Mouse All Exon V1:
+      file: "Agilent_mouseexome_S0276129_Regions_mm10_modified_merged.bed"
+      protocol_name: "SureSelectXTmouse"
+      agilent_coverage_file: "S0276129_Regions_mm10.bed"
+      default_for_species: "mus musculus"
+  varscan_somatic:
+    homo sapiens: " --min-coverage-normal 8 --min-coverage-tumor 10 --min-reads 4 "
+    mus musculus: " --min-coverage-normal 6 --min-coverage-tumor 8 "
+
+# Snupy's database assigns IDs to all objects. Some of them need to be known, when
+# uploading new data to Snupy. Here is the configuration for Snupy hosted at
+# Sebastians alma mater Hochschule Bonn-Rhein-Sieg. You propable have to adopt
+# IDs when switching to another instance of snupy!
+snupy_ids:
+  bonn:
+    institues:
+      UKD: 4
+    organisms:
+      homo sapiens: 1
+      mus musculus: 2
+    tools:
+      GATK: 118
+      GATK_RELAXED': 119
+      GATK_TRIO': 120
+      Mutect': 121
+      VarScan2': 122
+      Platypus': 123
+      Excavator2': 124
+  hhu:
+    institues:
+      UKD: 2
+    organisms:
+      homo sapiens: 1
+      mus musculus: 2
+    tools:
+      GATK: 116
+      GATK_RELAXED: 117
+      GATK_TRIO: 118
+      Mutect: 119
+      VarScan2: 120
+      Platypus: 121
+      Excavator2: 122
+
+credentials:
+  backup:
+    host: '10.2.5.12'
+    username: "SeqUser"
+    password: "thisisasecret"
+    targetdirectory: "array1/Sequencing_Backups/Illumina_HiSeq"
+  snupy:
+    bonn:
+      host: 'https://snupy-aqua.bio.inf.h-brs.de'
+      username: "janssen"
+      password: "thisisasecret"
+    hhu:
+      host: 'https://snupy.hpc.rz.uni-duesseldorf.de/'
+      username: "jansses"
+      password: "thisisasecret"
