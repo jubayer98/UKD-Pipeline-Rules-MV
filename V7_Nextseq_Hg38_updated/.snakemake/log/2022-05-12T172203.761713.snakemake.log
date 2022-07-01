@@ -1,0 +1,350 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	xenograft_check
+	check_coverage
+
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cluster nodes: 50
+Job counts:
+	count	jobs
+	7	MBC_remove_duplicates
+	1	bwa
+	9	gatk4_ApplyBQSR
+	8	gatk4_BaseRecalibrator
+	8	intersect
+	9	qualimap
+	1	sam_cleanup
+	8	samtools_index
+	3	samtools_index_sort
+	54
+
+[Thu May 12 17:22:25 2022]
+rule gatk4_ApplyBQSR:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.dict, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.amb, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.ann, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.bwt, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.fai, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.pac, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.sa, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/081_gatk4_BaseRecalibrator/Hg38/Keimbahn/KB0476_c.GATK4.Hg38.reCal.target.UMI.nodup.srt.table, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_c.UMI.target.nodup.srt.bam
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_c.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_c.log
+    jobid: 16
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_c.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_c.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_c
+    threads: 16
+
+gatk --java-options -Xmx16g ApplyBQSR -I /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_c.UMI.target.nodup.srt.bam -R /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta --bqsr-recal-file /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/081_gatk4_BaseRecalibrator/Hg38/Keimbahn/KB0476_c.GATK4.Hg38.reCal.target.UMI.nodup.srt.table -O /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_c.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_c.log 1>&2
+Submitted job 16 with external jobid '3389345.hpc-batch'.
+
+[Thu May 12 17:22:25 2022]
+rule MBC_remove_duplicates:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0472_f.Hg38.srt.bam, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0472_f.Hg38.srt.bai
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_f.UMI.nodup.srt.bam
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_f.log
+    jobid: 49
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_f.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_f.UMI.nodup.srt.bam
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_f
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools dedup -I /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0472_f.Hg38.srt.bam --paired --unpaired-reads discard --chimeric-pairs discard --output-stats /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_f. -S /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_f.UMI.nodup.srt.bam > /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_f.log 2>&1
+Submitted job 49 with external jobid '3389346.hpc-batch'.
+
+[Thu May 12 17:22:26 2022]
+rule samtools_index_sort:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0479_f.Hg38.srt.bam
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0479_f.Hg38.srt.bai
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/060_map/Hg38/Keimbahn/KB0479_f.samtools_view.log
+    jobid: 63
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/060_map/Hg38/Keimbahn/KB0479_f.benchmark
+    reason: Updated input files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0479_f.Hg38.srt.bam
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0479_f
+
+module load SamTools/1.11; samtools index /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0479_f.Hg38.srt.bam /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0479_f.Hg38.srt.bai > /gpfs/project/projects/spike/AG_Borkhardt/Logs/060_map/Hg38/Keimbahn/KB0479_f.samtools_view.log 2>&1
+Submitted job 63 with external jobid '3389347.hpc-batch'.
+
+[Thu May 12 17:22:26 2022]
+rule samtools_index_sort:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0472_m.Hg38.srt.bam
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0472_m.Hg38.srt.bai
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/060_map/Hg38/Keimbahn/KB0472_m.samtools_view.log
+    jobid: 71
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/060_map/Hg38/Keimbahn/KB0472_m.benchmark
+    reason: Updated input files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0472_m.Hg38.srt.bam
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_m
+
+module load SamTools/1.11; samtools index /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0472_m.Hg38.srt.bam /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0472_m.Hg38.srt.bai > /gpfs/project/projects/spike/AG_Borkhardt/Logs/060_map/Hg38/Keimbahn/KB0472_m.samtools_view.log 2>&1
+Submitted job 71 with external jobid '3389348.hpc-batch'.
+
+[Thu May 12 17:22:26 2022]
+rule bwa:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_m_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_m_R2_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.dict, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.amb, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.ann, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.bwt, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.fai, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.pac, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.sa
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_m.Hg38.sam
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/060_map/Keimbahn/KB0476_m.bwa_mem.log
+    jobid: 75
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/060_map/Keimbahn/KB0476_m.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_m.Hg38.sam
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_m
+    threads: 6
+
+module load SamTools/1.11; module load BWA/0.7.15; bwa mem -t 6 -v 2 -M -R "@RG\tID:220425_NB552271_0084_AHLJWWBGXL\tCN:Department_of_Pediatric_Oncology_Dusseldorf\tPU:HLJWWBGXL\tDT:2022/04/25\tPL:ILLUMINA\tLB:SureSelectHumanAllExonV7\tSM:KB0476_m"  /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_m_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_m_R2_UMI.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/060_map/Keimbahn/KB0476_m.bwa_mem.log > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_m.Hg38.sam
+Submitted job 75 with external jobid '3389349.hpc-batch'.
+
+[Thu May 12 17:22:27 2022]
+rule MBC_remove_duplicates:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_f.Hg38.srt.bam, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_f.Hg38.srt.bai
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_f.UMI.nodup.srt.bam
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_f.log
+    jobid: 37
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_f.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_f.UMI.nodup.srt.bam
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_f
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools dedup -I /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_f.Hg38.srt.bam --paired --unpaired-reads discard --chimeric-pairs discard --output-stats /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_f. -S /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_f.UMI.nodup.srt.bam > /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_f.log 2>&1
+Submitted job 37 with external jobid '3389350.hpc-batch'.
+
+[Thu May 12 17:22:27 2022]
+rule intersect:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.UMI.nodup.srt.bam, /gpfs/project/projects/spike/AG_Borkhardt/References/Covered_region.Hg38_V7.bed
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.UMI.target.nodup.srt.bam
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.intersect.log
+    jobid: 29
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.intersect.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.UMI.target.nodup.srt.bam
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_c
+
+module load bedtools/2.26.0 ; bedtools intersect -a /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.UMI.nodup.srt.bam -b /gpfs/project/projects/spike/AG_Borkhardt/References/Covered_region.Hg38_V7.bed -wa 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.intersect.log  > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.UMI.target.nodup.srt.bam
+Submitted job 29 with external jobid '3389351.hpc-batch'.
+
+[Thu May 12 17:22:28 2022]
+rule MBC_remove_duplicates:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0315_m.Hg38.srt.bam, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0315_m.Hg38.srt.bai
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_m.UMI.nodup.srt.bam
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_m.log
+    jobid: 39
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_m.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_m.UMI.nodup.srt.bam
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0315_m
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools dedup -I /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0315_m.Hg38.srt.bam --paired --unpaired-reads discard --chimeric-pairs discard --output-stats /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_m. -S /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_m.UMI.nodup.srt.bam > /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_m.log 2>&1
+Submitted job 39 with external jobid '3389352.hpc-batch'.
+
+[Thu May 12 17:22:28 2022]
+rule MBC_remove_duplicates:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0315_c.Hg38.srt.bam, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0315_c.Hg38.srt.bai
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_c.UMI.nodup.srt.bam
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_c.log
+    jobid: 41
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_c.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_c.UMI.nodup.srt.bam
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0315_c
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools dedup -I /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0315_c.Hg38.srt.bam --paired --unpaired-reads discard --chimeric-pairs discard --output-stats /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_c. -S /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_c.UMI.nodup.srt.bam > /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_c.log 2>&1
+Submitted job 41 with external jobid '3389353.hpc-batch'.
+[Thu May 12 17:23:10 2022]
+Finished job 29.
+1 of 54 steps (2%) done
+
+[Thu May 12 17:23:10 2022]
+rule samtools_index:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.UMI.target.nodup.srt.bam
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.UMI.target.nodup.srt.bai
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.samtools_view.log
+    jobid: 46
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.UMI.target.nodup.srt.bai; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.UMI.target.nodup.srt.bam
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_c
+
+module load SamTools/1.11; samtools index /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.UMI.target.nodup.srt.bam /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.UMI.target.nodup.srt.bai > /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.samtools_view.log 2>&1
+Submitted job 46 with external jobid '3389354.hpc-batch'.
+[Thu May 12 17:23:49 2022]
+Error in rule samtools_index:
+    jobid: 46
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.UMI.target.nodup.srt.bai
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.samtools_view.log (check log file(s) for error message)
+    shell:
+        module load SamTools/1.11; samtools index /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.UMI.target.nodup.srt.bam /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.UMI.target.nodup.srt.bai > /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_c.samtools_view.log 2>&1
+        (exited with non-zero exit code)
+    cluster_jobid: 3389354.hpc-batch
+
+Error executing rule samtools_index on cluster (jobid: 46, external: 3389354.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.9bi4m6i3/snakejob.samtools_index.46.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 17:25:51 2022]
+Finished job 63.
+2 of 54 steps (4%) done
+
+[Thu May 12 17:25:51 2022]
+rule MBC_remove_duplicates:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0479_f.Hg38.srt.bam, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0479_f.Hg38.srt.bai
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0479_f.UMI.nodup.srt.bam
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0479_f.log
+    jobid: 45
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0479_f.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0479_f.UMI.nodup.srt.bam; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0479_f.Hg38.srt.bai
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0479_f
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools dedup -I /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0479_f.Hg38.srt.bam --paired --unpaired-reads discard --chimeric-pairs discard --output-stats /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0479_f. -S /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0479_f.UMI.nodup.srt.bam > /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0479_f.log 2>&1
+Submitted job 45 with external jobid '3389358.hpc-batch'.
+[Thu May 12 17:26:38 2022]
+Finished job 71.
+3 of 54 steps (6%) done
+
+[Thu May 12 17:26:38 2022]
+rule MBC_remove_duplicates:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0472_m.Hg38.srt.bam, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0472_m.Hg38.srt.bai
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_m.UMI.nodup.srt.bam
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_m.log
+    jobid: 53
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_m.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_m.UMI.nodup.srt.bam; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0472_m.Hg38.srt.bai
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_m
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools dedup -I /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0472_m.Hg38.srt.bam --paired --unpaired-reads discard --chimeric-pairs discard --output-stats /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_m. -S /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_m.UMI.nodup.srt.bam > /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_m.log 2>&1
+Submitted job 53 with external jobid '3389359.hpc-batch'.
+[Thu May 12 17:35:37 2022]
+Finished job 16.
+4 of 54 steps (7%) done
+
+[Thu May 12 17:35:37 2022]
+rule qualimap:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_c.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam, /gpfs/project/projects/spike/AG_Borkhardt/References/Target_Region_Hg38_V7_qualimap.bed
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0476_c/qualimapReport.html
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0476_c.log
+    jobid: 7
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/087_qualimap/Hg38/Keimbahn/KB0476_c.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0476_c/qualimapReport.html; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_c.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_c
+    threads: 6
+
+qualimap bamqc -bam /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_c.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam --feature-file /gpfs/project/projects/spike/AG_Borkhardt/References/Target_Region_Hg38_V7_qualimap.bed --collect-overlap-pairs --genome-gc-distr HUMAN -nr 5000 --java-mem-size=20G -nt 6 -outformat HTML -outdir /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0476_c/ > /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0476_c.log
+Submitted job 7 with external jobid '3389395.hpc-batch'.
+[Thu May 12 17:36:19 2022]
+Error in rule qualimap:
+    jobid: 7
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0476_c/qualimapReport.html
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0476_c.log (check log file(s) for error message)
+    shell:
+        qualimap bamqc -bam /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_c.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam --feature-file /gpfs/project/projects/spike/AG_Borkhardt/References/Target_Region_Hg38_V7_qualimap.bed --collect-overlap-pairs --genome-gc-distr HUMAN -nr 5000 --java-mem-size=20G -nt 6 -outformat HTML -outdir /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0476_c/ > /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0476_c.log
+        (exited with non-zero exit code)
+    cluster_jobid: 3389395.hpc-batch
+
+Error executing rule qualimap on cluster (jobid: 7, external: 3389395.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.9bi4m6i3/snakejob.qualimap.7.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 19:09:55 2022]
+Finished job 75.
+5 of 54 steps (9%) done
+
+[Thu May 12 19:09:55 2022]
+rule sam_cleanup:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_m.Hg38.sam
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_m.Hg38.srt.bam
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/060_map/Hg38/Keimbahn/KB0476_m.log
+    jobid: 60
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_m.Hg38.srt.bam; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_m.Hg38.sam
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_m
+
+module load SamTools/1.11; module load Picard/2.25.1; java -Xmx4g -XX:ParallelGCThreads=1 -jar /software/picard/2.25.1/picard.jar SortSam I=/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_m.Hg38.sam O=/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_m.Hg38.srt.bam SORT_ORDER=coordinate CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/060_map/Hg38/Keimbahn/KB0476_m.log && rm -v -f /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_m.Hg38.sam
+Submitted job 60 with external jobid '3389922.hpc-batch'.
+[Thu May 12 19:50:32 2022]
+Finished job 60.
+6 of 54 steps (11%) done
+
+[Thu May 12 19:50:32 2022]
+rule samtools_index_sort:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_m.Hg38.srt.bam
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_m.Hg38.srt.bai
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/060_map/Hg38/Keimbahn/KB0476_m.samtools_view.log
+    jobid: 61
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/060_map/Hg38/Keimbahn/KB0476_m.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_m.Hg38.srt.bai; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_m.Hg38.srt.bam
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_m
+
+module load SamTools/1.11; samtools index /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_m.Hg38.srt.bam /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_m.Hg38.srt.bai > /gpfs/project/projects/spike/AG_Borkhardt/Logs/060_map/Hg38/Keimbahn/KB0476_m.samtools_view.log 2>&1
+Submitted job 61 with external jobid '3390090.hpc-batch'.
+[Thu May 12 19:54:14 2022]
+Finished job 61.
+7 of 54 steps (13%) done
+
+[Thu May 12 19:54:14 2022]
+rule MBC_remove_duplicates:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_m.Hg38.srt.bam, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_m.Hg38.srt.bai
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_m.UMI.nodup.srt.bam
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_m.log
+    jobid: 43
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_m.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_m.UMI.nodup.srt.bam; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_m.Hg38.srt.bai, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_m.Hg38.srt.bam
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_m
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools dedup -I /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_m.Hg38.srt.bam --paired --unpaired-reads discard --chimeric-pairs discard --output-stats /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_m. -S /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_m.UMI.nodup.srt.bam > /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_m.log 2>&1
+Submitted job 43 with external jobid '3390145.hpc-batch'.
+[Thu May 12 20:24:45 2022]
+Error in rule MBC_remove_duplicates:
+    jobid: 49
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_f.UMI.nodup.srt.bam
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_f.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools dedup -I /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0472_f.Hg38.srt.bam --paired --unpaired-reads discard --chimeric-pairs discard --output-stats /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_f. -S /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_f.UMI.nodup.srt.bam > /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_f.log 2>&1
+        (exited with non-zero exit code)
+    cluster_jobid: 3389346.hpc-batch
+
+Error executing rule MBC_remove_duplicates on cluster (jobid: 49, external: 3389346.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.9bi4m6i3/snakejob.MBC_remove_duplicates.49.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 20:31:27 2022]
+Error in rule MBC_remove_duplicates:
+    jobid: 41
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_c.UMI.nodup.srt.bam
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_c.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools dedup -I /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0315_c.Hg38.srt.bam --paired --unpaired-reads discard --chimeric-pairs discard --output-stats /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_c. -S /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_c.UMI.nodup.srt.bam > /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_c.log 2>&1
+        (exited with non-zero exit code)
+    cluster_jobid: 3389353.hpc-batch
+
+Error executing rule MBC_remove_duplicates on cluster (jobid: 41, external: 3389353.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.9bi4m6i3/snakejob.MBC_remove_duplicates.41.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 20:44:45 2022]
+Error in rule MBC_remove_duplicates:
+    jobid: 37
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_f.UMI.nodup.srt.bam
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_f.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools dedup -I /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_f.Hg38.srt.bam --paired --unpaired-reads discard --chimeric-pairs discard --output-stats /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_f. -S /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_f.UMI.nodup.srt.bam > /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_f.log 2>&1
+        (exited with non-zero exit code)
+    cluster_jobid: 3389350.hpc-batch
+
+Error executing rule MBC_remove_duplicates on cluster (jobid: 37, external: 3389350.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.9bi4m6i3/snakejob.MBC_remove_duplicates.37.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 21:07:38 2022]
+Error in rule MBC_remove_duplicates:
+    jobid: 45
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0479_f.UMI.nodup.srt.bam
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0479_f.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools dedup -I /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0479_f.Hg38.srt.bam --paired --unpaired-reads discard --chimeric-pairs discard --output-stats /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0479_f. -S /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0479_f.UMI.nodup.srt.bam > /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0479_f.log 2>&1
+        (exited with non-zero exit code)
+    cluster_jobid: 3389358.hpc-batch
+
+Error executing rule MBC_remove_duplicates on cluster (jobid: 45, external: 3389358.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.9bi4m6i3/snakejob.MBC_remove_duplicates.45.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 21:07:55 2022]
+Error in rule MBC_remove_duplicates:
+    jobid: 39
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_m.UMI.nodup.srt.bam
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_m.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools dedup -I /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0315_m.Hg38.srt.bam --paired --unpaired-reads discard --chimeric-pairs discard --output-stats /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_m. -S /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_m.UMI.nodup.srt.bam > /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0315_m.log 2>&1
+        (exited with non-zero exit code)
+    cluster_jobid: 3389352.hpc-batch
+
+Error executing rule MBC_remove_duplicates on cluster (jobid: 39, external: 3389352.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.9bi4m6i3/snakejob.MBC_remove_duplicates.39.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 22:19:39 2022]
+Error in rule MBC_remove_duplicates:
+    jobid: 53
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_m.UMI.nodup.srt.bam
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_m.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools dedup -I /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0472_m.Hg38.srt.bam --paired --unpaired-reads discard --chimeric-pairs discard --output-stats /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_m. -S /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_m.UMI.nodup.srt.bam > /gpfs/project/projects/spike/AG_Borkhardt/Logs/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0472_m.log 2>&1
+        (exited with non-zero exit code)
+    cluster_jobid: 3389359.hpc-batch
+
+Error executing rule MBC_remove_duplicates on cluster (jobid: 53, external: 3389359.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.9bi4m6i3/snakejob.MBC_remove_duplicates.53.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+Will exit after finishing currently running jobs.

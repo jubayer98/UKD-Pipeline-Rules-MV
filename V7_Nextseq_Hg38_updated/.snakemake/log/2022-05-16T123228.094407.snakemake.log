@@ -1,0 +1,12 @@
+KeyboardInterrupt in line 22 of /home/yasinl/V7_Nextseq_Hg38/Snakefile.
+  File "/home/yasinl/V7_Nextseq_Hg38/Snakefile", line 22, in <module>
+  File "/home/yasinl/V7_Nextseq_Hg38/scripts/parse_samplesheet.py", line 245, in get_global_samplesheets
+  File "/home/yasinl/V7_Nextseq_Hg38/scripts/parse_samplesheet.py", line 81, in parse_samplesheet
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/frame.py", line 3370, in __setitem__
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/frame.py", line 3446, in _set_item
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/generic.py", line 3172, in _set_item
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/internals/managers.py", line 1056, in set
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/internals/managers.py", line 1155, in insert
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/indexes/base.py", line 4937, in insert
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/indexes/base.py", line 607, in _shallow_copy_with_infer
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/indexes/base.py", line 422, in __new__

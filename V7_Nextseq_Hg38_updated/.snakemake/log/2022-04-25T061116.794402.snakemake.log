@@ -1,0 +1,5 @@
+OSError in line 22 of /home/yasinl/V7_Nextseq_Hg38/Snakefile:
+[Errno 5] Input/output error: '/gpfs/project/projects/spike/AG_Borkhardt/Inputs/SampleSheets/180713_SN737_0440_ACC6NPACXX_spike.csv'
+  File "/home/yasinl/V7_Nextseq_Hg38/Snakefile", line 22, in <module>
+  File "/home/yasinl/V7_Nextseq_Hg38/scripts/parse_samplesheet.py", line 245, in get_global_samplesheets
+  File "/home/yasinl/V7_Nextseq_Hg38/scripts/parse_samplesheet.py", line 18, in parse_samplesheet

@@ -1,0 +1,40 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	check_coverage
+	xenograft_check
+
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cluster nodes: 50
+Job counts:
+	count	jobs
+	1	MBC_remove_duplicates
+	1	bwa
+	1	gatk4_ApplyBQSR
+	1	gatk4_BaseRecalibrator
+	1	intersect
+	1	qualimap
+	1	sam_cleanup
+	1	samtools_index
+	1	samtools_index_sort
+	1	trim
+	10
+
+[Thu May 19 01:46:12 2022]
+rule trim:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3_UMI.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R2_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0476_f.log
+    jobid: 54
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/040_trim/Keimbahn/KB0476_f.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R2_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_f
+    threads: 16
+
+mkdir -p `dirname /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0476_f_R1.fastq.gz` 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0476_f.log & java -Xmx4g -XX:ParallelGCThreads=16 -jar ${CONDA_PREFIX}/share/trimmomatic-0.33-1/trimmomatic.jar PE -threads 16 -phred33 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0476_f_R1.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R2_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0476_f_R2.fastq.gz ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic-0.33-1/adapters/TruSeq3-PE.fa:2:30:10 CROP:149 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:54 >> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0476_f.log 2>&1
+Submitted job 54 with external jobid '3469508.hpc-batch'.
+Terminating processes on user request, this might take some time.
+Will exit after finishing currently running jobs.
+Cancelling snakemake on user request.

@@ -1,0 +1,8 @@
+channels:
+  - nodefaults
+  - http://conda.repo.test.hhu.de/bioconda
+#  - http://conda.repo.test.hhu.de/conda-forge
+  - http://conda.repo.test.hhu.de/main
+dependencies:
+  - qualimap =2.2.2
+  - openjdk =8.0.152

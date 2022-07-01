@@ -1,0 +1,7 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+IndentationError in line 48 of <tokenize>:
+unindent does not match any outer indentation level (<tokenize>, line 48)
+  File "/home/yasinl/V7_Nextseq_Hg38/Snakefile", line 64, in <module>
+  File "/home/yasinl/miniconda3/lib/python3.7/tokenize.py", line 572, in _tokenize

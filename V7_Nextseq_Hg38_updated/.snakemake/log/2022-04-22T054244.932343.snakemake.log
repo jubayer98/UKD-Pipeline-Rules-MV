@@ -1,0 +1,191 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	check_coverage
+	xenograft_check
+
+Building DAG of jobs...
+Creating conda environment rules/demultiplex/envs/spike_report.yaml...
+Downloading remote packages.
+CreateCondaEnvironmentException:
+Could not create conda environment from /home/yasinl/Deya/rules/demultiplex/envs/spike_report.yaml:
+Collecting package metadata (repodata.json): ...working... failed
+
+# >>>>>>>>>>>>>>>>>>>>>> ERROR REPORT <<<<<<<<<<<<<<<<<<<<<<
+
+    Traceback (most recent call last):
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/urllib3/connection.py", line 159, in _new_conn
+        (self._dns_host, self.port), self.timeout, **extra_kw)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/urllib3/util/connection.py", line 80, in create_connection
+        raise err
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/urllib3/util/connection.py", line 70, in create_connection
+        sock.connect(sa)
+    OSError: [Errno 101] Network is unreachable
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/urllib3/connectionpool.py", line 600, in urlopen
+        chunked=chunked)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/urllib3/connectionpool.py", line 343, in _make_request
+        self._validate_conn(conn)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/urllib3/connectionpool.py", line 839, in _validate_conn
+        conn.connect()
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/urllib3/connection.py", line 301, in connect
+        conn = self._new_conn()
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/urllib3/connection.py", line 168, in _new_conn
+        self, "Failed to establish a new connection: %s" % e)
+    urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x2b4b2bd660d0>: Failed to establish a new connection: [Errno 101] Network is unreachable
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/requests/adapters.py", line 449, in send
+        timeout=timeout
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/urllib3/connectionpool.py", line 667, in urlopen
+        **response_kw)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/urllib3/connectionpool.py", line 667, in urlopen
+        **response_kw)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/urllib3/connectionpool.py", line 667, in urlopen
+        **response_kw)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/urllib3/connectionpool.py", line 638, in urlopen
+        _stacktrace=sys.exc_info()[2])
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/urllib3/util/retry.py", line 399, in increment
+        raise MaxRetryError(_pool, url, error or ResponseError(cause))
+    urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='conda.anaconda.org', port=443): Max retries exceeded with url: /defaults/linux-64/repodata.json (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x2b4b2bd660d0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/conda/core/subdir_data.py", line 485, in fetch_repodata_remote_request
+        timeout=timeout)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/requests/sessions.py", line 555, in get
+        return self.request('GET', url, **kwargs)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/requests/sessions.py", line 542, in request
+        resp = self.send(prep, **send_kwargs)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/requests/sessions.py", line 655, in send
+        r = adapter.send(request, **kwargs)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/requests/adapters.py", line 516, in send
+        raise ConnectionError(e, request=request)
+    requests.exceptions.ConnectionError: HTTPSConnectionPool(host='conda.anaconda.org', port=443): Max retries exceeded with url: /defaults/linux-64/repodata.json (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x2b4b2bd660d0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/conda/exceptions.py", line 1078, in __call__
+        return func(*args, **kwargs)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/conda_env/cli/main.py", line 80, in do_call
+        exit_code = getattr(module, func_name)(args, parser)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/conda_env/cli/main_create.py", line 102, in execute
+        result[installer_type] = installer.install(prefix, pkg_specs, args, env)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/conda_env/installers/conda.py", line 27, in install
+        unlink_link_transaction = solver.solve_for_transaction(prune=getattr(args, 'prune', False))
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/conda/core/solve.py", line 117, in solve_for_transaction
+        should_retry_solve)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/conda/core/solve.py", line 158, in solve_for_diff
+        force_remove, should_retry_solve)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/conda/core/solve.py", line 262, in solve_final_state
+        ssc = self._collect_all_metadata(ssc)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/conda/common/io.py", line 88, in decorated
+        return f(*args, **kwds)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/conda/core/solve.py", line 415, in _collect_all_metadata
+        index, r = self._prepare(prepared_specs)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/conda/core/solve.py", line 1004, in _prepare
+        self.subdirs, prepared_specs, self._repodata_fn)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/conda/core/index.py", line 229, in get_reduced_index
+        repodata_fn=repodata_fn)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/conda/core/subdir_data.py", line 105, in query_all
+        result = tuple(concat(executor.map(subdir_query, channel_urls)))
+      File "/home/yasinl/miniconda3/lib/python3.7/concurrent/futures/_base.py", line 598, in result_iterator
+        yield fs.pop().result()
+      File "/home/yasinl/miniconda3/lib/python3.7/concurrent/futures/_base.py", line 435, in result
+        return self.__get_result()
+      File "/home/yasinl/miniconda3/lib/python3.7/concurrent/futures/_base.py", line 384, in __get_result
+        raise self._exception
+      File "/home/yasinl/miniconda3/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+        result = self.fn(*self.args, **self.kwargs)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/conda/core/subdir_data.py", line 98, in <lambda>
+        package_ref_or_match_spec))
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/conda/core/subdir_data.py", line 110, in query
+        self.load()
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/conda/core/subdir_data.py", line 174, in load
+        _internal_state = self._load()
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/conda/core/subdir_data.py", line 248, in _load
+        repodata_fn=self.repodata_fn)
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/conda/core/subdir_data.py", line 587, in fetch_repodata_remote_request
+        """) % maybe_unquote(repr(e))
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/conda/common/url.py", line 368, in maybe_unquote
+        return unquote_plus(remove_auth(url)) if url else url
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/conda/common/url.py", line 372, in remove_auth
+        url_parts = parse_url(url)._asdict()
+      File "/home/yasinl/miniconda3/lib/python3.7/site-packages/conda/_vendor/urllib3/util/url.py", line 196, in parse_url
+        raise LocationParseError(url)
+    conda._vendor.urllib3.exceptions.LocationParseError: Failed to parse: ConnectionError(MaxRetryError("HTTPSConnectionPool(host='conda.anaconda.org', port=443): Max retries exceeded with url: 
+
+`$ /home/yasinl/miniconda3/bin/conda-env create --file /home/yasinl/Deya/.snakemake/conda/69b9dace.yaml --prefix /home/yasinl/Deya/.snakemake/conda/69b9dace`
+
+  environment variables:
+                 CIO_TEST=<not set>
+  CONDA_AUTO_UPDATE_CONDA=false
+        CONDA_DEFAULT_ENV=base
+                CONDA_EXE=/home/yasinl/miniconda3/bin/conda
+             CONDA_PREFIX=/home/yasinl/miniconda3
+    CONDA_PROMPT_MODIFIER=(base)
+         CONDA_PYTHON_EXE=/home/yasinl/miniconda3/bin/python
+               CONDA_ROOT=/home/yasinl/miniconda3
+              CONDA_SHLVL=1
+                  MANPATH=:/opt/pbs/share/man
+               MODULEPATH=/software/modules/compiler:/software/modules/software:/software/module
+                          s/tools:/home/yasinl/.modules
+                     PATH=/home/yasinl/miniconda3/bin:/home/yasinl/miniconda3/condabin:/home/yas
+                          inl/miniconda3/bin:/usr/lpp/mmfs/bin:/usr/pbs/bin:/usr/local/bin:/usr/
+                          bin:/usr/local/sbin:/usr/sbin:/opt/ibutils/bin:/opt/pbs/bin
+       REQUESTS_CA_BUNDLE=<not set>
+            SSL_CERT_FILE=<not set>
+
+     active environment : base
+    active env location : /home/yasinl/miniconda3
+            shell level : 1
+       user config file : /home/yasinl/.condarc
+ populated config files : /home/yasinl/.condarc
+          conda version : 4.8.0
+    conda-build version : not installed
+         python version : 3.7.4.final.0
+       virtual packages : __glibc=2.17
+       base environment : /home/yasinl/miniconda3  (writable)
+           channel URLs : http://conda.repo.test.hhu.de/bioconda/linux-64
+                          http://conda.repo.test.hhu.de/bioconda/noarch
+                          http://conda.repo.test.hhu.de/main/linux-64
+                          http://conda.repo.test.hhu.de/main/noarch
+                          http://conda.repo.test.hhu.de/conda-forge/linux-64
+                          http://conda.repo.test.hhu.de/conda-forge/noarch
+                          http://conda.repo.test.hhu.de/cyclus/linux-64
+                          http://conda.repo.test.hhu.de/cyclus/noarch
+                          http://conda.repo.test.hhu.de/biobuilds/linux-64
+                          http://conda.repo.test.hhu.de/biobuilds/noarch
+                          http://conda.repo.test.hhu.de/r/linux-64
+                          http://conda.repo.test.hhu.de/r/noarch
+                          https://conda.anaconda.org/defaults/linux-64
+                          https://conda.anaconda.org/defaults/noarch
+          package cache : /home/yasinl/miniconda3/pkgs
+                          /home/yasinl/.conda/pkgs
+       envs directories : /home/yasinl/miniconda3/envs
+                          /home/yasinl/.conda/envs
+               platform : linux-64
+             user-agent : conda/4.8.0 requests/2.26.0 CPython/3.7.4 Linux/3.10.0-1160.49.1.el7.x86_64 centos/7.9.2009 glibc/2.17
+                UID:GID : 175406:214
+             netrc file : None
+           offline mode : False
+
+
+An unexpected error has occurred. Conda has prepared the above report.
+
+If submitted, this report will be used by core maintainers to improve
+future releases of conda.
+Would you like conda to send this report to the core maintainers?
+
+[y/N]: 
+Timeout reached. No report sent.
+
+

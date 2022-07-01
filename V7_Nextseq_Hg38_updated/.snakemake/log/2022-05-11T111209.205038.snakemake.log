@@ -1,0 +1,28 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	check_coverage
+	xenograft_check
+
+Building DAG of jobs...
+Creating conda environment rules/rejoin_samples/envs/spike_rejoin.yaml...
+Downloading remote packages.
+Environment for rules/rejoin_samples/envs/spike_rejoin.yaml created (location: .snakemake/conda/4d897989)
+Creating conda environment rules/map/envs/bedtools.yaml...
+Downloading remote packages.
+CreateCondaEnvironmentException:
+Could not create conda environment from /home/yasinl/V7_Nextseq_Hg38/rules/map/envs/bedtools.yaml:
+Collecting package metadata (repodata.json): ...working... failed
+
+UnavailableInvalidChannel: The channel is not accessible or is invalid.
+  channel name: defaults
+  channel url: http://conda.repo.test.hhu.de/defaults
+  error code: 404
+
+You will need to adjust your conda configuration to proceed.
+Use `conda config --show channels` to view your configuration's current state,
+and use `conda config --show-sources` to view config file locations.
+
+
+

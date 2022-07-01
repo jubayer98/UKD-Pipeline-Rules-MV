@@ -1,0 +1,1008 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	check_coverage
+	xenograft_check
+
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cluster nodes: 50
+Job counts:
+	count	jobs
+	9	MBC_remove_duplicates
+	9	add_UMI_R1
+	9	add_UMI_R3
+	9	bwa
+	9	gatk4_ApplyBQSR
+	9	gatk4_BaseRecalibrator
+	9	intersect
+	1	join_demultiplex
+	9	qualimap
+	27	rejoin_sample
+	9	sam_cleanup
+	9	samtools_index
+	9	samtools_index_sort
+	9	trim
+	136
+
+[Mon May 16 20:11:28 2022]
+rule join_demultiplex:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_1, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_2, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_3, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_4
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL.log
+    jobid: 135
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL.benchmark
+    reason: Updated input files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_4, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_3, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_1, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_2
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, run=220425_NB552271_0084_AHLJWWBGXL
+
+mkdir -p /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL -v 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL.log 1>&2 && for inp in `echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_1 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_2 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_3 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_4"`; do     for d in `find $inp -maxdepth 1 -mindepth 1 -type d ! -path '*Stats' ! -path '*Reports'`; do        cp -l -r -v $d /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL.log 1>&2;    done; done && for f in `find /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/ -name "*.fastq.gz"`; do     fnoS=`echo "$f" | sed -r "s/_S[0-9]+_/_/"`; mv -v $f $fnoS 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL.log 1>&2;  done
+Submitted job 135 with external jobid '3460831.hpc-batch'.
+[Mon May 16 20:12:12 2022]
+Finished job 135.
+1 of 136 steps (0.74%) done
+
+[Mon May 16 20:12:12 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R1.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m_R1.log
+    jobid: 108
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0315_m_R1.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0315_m, direction=R1
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L004_R1_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L004_R1_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R1.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m_R1.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L004_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R1.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m_R1.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R1.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m_R1.log; fi;
+Submitted job 108 with external jobid '3460832.hpc-batch'.
+
+[Mon May 16 20:12:12 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R3.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c_R3.log
+    jobid: 128
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0315_c_R3.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0315_c, direction=R3
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L004_R3_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L004_R3_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R3.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c_R3.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L004_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R3.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c_R3.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R3.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c_R3.log; fi;
+Submitted job 128 with external jobid '3460833.hpc-batch'.
+
+[Mon May 16 20:12:12 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R3.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m_R3.log
+    jobid: 122
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0472_m_R3.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_m, direction=R3
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L004_R3_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L004_R3_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R3.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m_R3.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L004_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R3.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m_R3.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R3.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m_R3.log; fi;
+Submitted job 122 with external jobid '3460834.hpc-batch'.
+
+[Mon May 16 20:12:12 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R2.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f_R2.log
+    jobid: 124
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0476_f_R2.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_f, direction=R2
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L004_R2_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L004_R2_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R2.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f_R2.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L004_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R2.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f_R2.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R2.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f_R2.log; fi;
+Submitted job 124 with external jobid '3460835.hpc-batch'.
+
+[Mon May 16 20:12:12 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R2.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c_R2.log
+    jobid: 112
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0472_c_R2.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_c, direction=R2
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L004_R2_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L004_R2_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R2.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c_R2.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L004_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R2.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c_R2.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R2.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c_R2.log; fi;
+Submitted job 112 with external jobid '3460836.hpc-batch'.
+
+[Mon May 16 20:12:12 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R2.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c_R2.log
+    jobid: 130
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0476_c_R2.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_c, direction=R2
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L004_R2_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L004_R2_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R2.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c_R2.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L004_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R2.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c_R2.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R2.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c_R2.log; fi;
+Submitted job 130 with external jobid '3460837.hpc-batch'.
+
+[Mon May 16 20:12:12 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R1.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c_R1.log
+    jobid: 126
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0315_c_R1.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0315_c, direction=R1
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L004_R1_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L004_R1_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R1.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c_R1.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L004_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R1.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c_R1.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R1.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c_R1.log; fi;
+Submitted job 126 with external jobid '3460838.hpc-batch'.
+
+[Mon May 16 20:12:12 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R3.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m_R3.log
+    jobid: 110
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0315_m_R3.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0315_m, direction=R3
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L004_R3_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L004_R3_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R3.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m_R3.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L004_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R3.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m_R3.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R3.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m_R3.log; fi;
+Submitted job 110 with external jobid '3460839.hpc-batch'.
+
+[Mon May 16 20:12:12 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R1.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m_R1.log
+    jobid: 120
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0472_m_R1.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_m, direction=R1
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L004_R1_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L004_R1_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R1.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m_R1.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L004_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R1.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m_R1.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R1.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m_R1.log; fi;
+Submitted job 120 with external jobid '3460840.hpc-batch'.
+
+[Mon May 16 20:12:13 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R3.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f_R3.log
+    jobid: 134
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0479_f_R3.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0479_f, direction=R3
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L004_R3_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L004_R3_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R3.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f_R3.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L004_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R3.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f_R3.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R3.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f_R3.log; fi;
+Submitted job 134 with external jobid '3460841.hpc-batch'.
+
+[Mon May 16 20:12:13 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R2.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f_R2.log
+    jobid: 115
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0472_f_R2.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_f, direction=R2
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L004_R2_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L004_R2_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R2.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f_R2.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L004_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R2.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f_R2.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R2.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f_R2.log; fi;
+Submitted job 115 with external jobid '3460842.hpc-batch'.
+
+[Mon May 16 20:12:13 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R2.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m_R2.log
+    jobid: 118
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0476_m_R2.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_m, direction=R2
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L004_R2_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L004_R2_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R2.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m_R2.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L004_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R2.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m_R2.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R2.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m_R2.log; fi;
+Submitted job 118 with external jobid '3460843.hpc-batch'.
+
+[Mon May 16 20:12:13 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f_R1.log
+    jobid: 132
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0479_f_R1.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0479_f, direction=R1
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L004_R1_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L004_R1_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f_R1.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L004_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f_R1.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f_R1.log; fi;
+Submitted job 132 with external jobid '3460844.hpc-batch'.
+
+[Mon May 16 20:12:13 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R2.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m_R2.log
+    jobid: 109
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0315_m_R2.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0315_m, direction=R2
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L004_R2_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L004_R2_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R2.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m_R2.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_m_L004_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R2.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m_R2.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R2.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m_R2.log; fi;
+Submitted job 109 with external jobid '3460845.hpc-batch'.
+
+[Mon May 16 20:12:13 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f_R3.log
+    jobid: 125
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0476_f_R3.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_f, direction=R3
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L004_R3_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L004_R3_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f_R3.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L004_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f_R3.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f_R3.log; fi;
+Submitted job 125 with external jobid '3460846.hpc-batch'.
+
+[Mon May 16 20:12:13 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R3.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c_R3.log
+    jobid: 113
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0472_c_R3.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_c, direction=R3
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L004_R3_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L004_R3_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R3.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c_R3.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L004_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R3.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c_R3.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R3.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c_R3.log; fi;
+Submitted job 113 with external jobid '3460847.hpc-batch'.
+
+[Mon May 16 20:12:13 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R3.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c_R3.log
+    jobid: 131
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0476_c_R3.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_c, direction=R3
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L004_R3_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L004_R3_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R3.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c_R3.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L004_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R3.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c_R3.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R3.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c_R3.log; fi;
+Submitted job 131 with external jobid '3460848.hpc-batch'.
+
+[Mon May 16 20:12:13 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R2.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c_R2.log
+    jobid: 127
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0315_c_R2.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0315_c, direction=R2
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L004_R2_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L004_R2_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R2.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c_R2.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0315_c_L004_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R2.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c_R2.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R2.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c_R2.log; fi;
+Submitted job 127 with external jobid '3460849.hpc-batch'.
+
+[Mon May 16 20:12:14 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R2.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m_R2.log
+    jobid: 121
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0472_m_R2.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_m, direction=R2
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L004_R2_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L004_R2_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R2.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m_R2.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_m_L004_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R2.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m_R2.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R2.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m_R2.log; fi;
+Submitted job 121 with external jobid '3460850.hpc-batch'.
+
+[Mon May 16 20:12:14 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f_R1.log
+    jobid: 123
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0476_f_R1.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_f, direction=R1
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L004_R1_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L004_R1_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f_R1.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_f_L004_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f_R1.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f_R1.log; fi;
+Submitted job 123 with external jobid '3460851.hpc-batch'.
+
+[Mon May 16 20:12:14 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R1.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c_R1.log
+    jobid: 129
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0476_c_R1.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_c, direction=R1
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L004_R1_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L004_R1_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R1.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c_R1.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_c_L004_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R1.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c_R1.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R1.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c_R1.log; fi;
+Submitted job 129 with external jobid '3460852.hpc-batch'.
+
+[Mon May 16 20:12:14 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R1.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c_R1.log
+    jobid: 111
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0472_c_R1.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_c, direction=R1
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L004_R1_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L004_R1_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R1.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c_R1.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_c_L004_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R1.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c_R1.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R1.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c_R1.log; fi;
+Submitted job 111 with external jobid '3460853.hpc-batch'.
+
+[Mon May 16 20:12:14 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R1.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m_R1.log
+    jobid: 117
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0476_m_R1.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_m, direction=R1
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L004_R1_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L004_R1_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R1.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m_R1.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L004_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R1.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m_R1.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R1.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m_R1.log; fi;
+Submitted job 117 with external jobid '3460854.hpc-batch'.
+
+[Mon May 16 20:12:14 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R1.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f_R1.log
+    jobid: 114
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0472_f_R1.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_f, direction=R1
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L004_R1_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L004_R1_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R1.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f_R1.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L001_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L002_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L003_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L004_R1_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R1.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f_R1.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R1.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f_R1.log; fi;
+Submitted job 114 with external jobid '3460855.hpc-batch'.
+
+[Mon May 16 20:12:14 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R3.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m_R3.log
+    jobid: 119
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0476_m_R3.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_m, direction=R3
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L004_R3_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L004_R3_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R3.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m_R3.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0476_m_L004_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R3.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m_R3.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R3.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m_R3.log; fi;
+Submitted job 119 with external jobid '3460856.hpc-batch'.
+
+[Mon May 16 20:12:14 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R2.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f_R2.log
+    jobid: 133
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0479_f_R2.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0479_f, direction=R2
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L004_R2_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L004_R2_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R2.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f_R2.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L001_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L002_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L003_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0479_f_L004_R2_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R2.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f_R2.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R2.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f_R2.log; fi;
+Submitted job 133 with external jobid '3460857.hpc-batch'.
+
+[Mon May 16 20:12:15 2022]
+rule rejoin_sample:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R3.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f_R3.log
+    jobid: 116
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0472_f_R3.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_f, direction=R3
+
+if [[ $(echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L004_R3_001.fastq.gz" | wc -w) -gt 1 ]]; then zcat /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L004_R3_001.fastq.gz | pigz --blocksize 1024 -6 --stdout -p 1 | dd > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R3.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f_R3.log;  else cp -l -v /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L001_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L002_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L003_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/Keimbahn/KB0472_f_L004_R3_001.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R3.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f_R3.log 1>&2; chmod u+w /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R3.fastq.gz 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f_R3.log; fi;
+Submitted job 116 with external jobid '3460858.hpc-batch'.
+[Mon May 16 20:16:13 2022]
+Finished job 115.
+2 of 136 steps (1%) done
+[Mon May 16 20:16:24 2022]
+Finished job 127.
+3 of 136 steps (2%) done
+[Mon May 16 20:16:36 2022]
+Finished job 133.
+4 of 136 steps (3%) done
+[Mon May 16 20:16:54 2022]
+Finished job 124.
+5 of 136 steps (4%) done
+[Mon May 16 20:16:57 2022]
+Finished job 130.
+6 of 136 steps (4%) done
+[Mon May 16 20:17:05 2022]
+Finished job 118.
+7 of 136 steps (5%) done
+[Mon May 16 20:17:08 2022]
+Finished job 109.
+8 of 136 steps (6%) done
+[Mon May 16 20:17:15 2022]
+Finished job 121.
+9 of 136 steps (7%) done
+[Mon May 16 20:17:42 2022]
+Finished job 112.
+10 of 136 steps (7%) done
+[Mon May 16 20:43:01 2022]
+Finished job 114.
+11 of 136 steps (8%) done
+
+[Mon May 16 20:43:01 2022]
+rule add_UMI_R1:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R1.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f.log
+    jobid: 94
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0472_f.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R2.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R1.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_f
+
+umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f.log
+Submitted job 94 with external jobid '3461180.hpc-batch'.
+[Mon May 16 20:44:00 2022]
+Finished job 126.
+12 of 136 steps (9%) done
+
+[Mon May 16 20:44:00 2022]
+rule add_UMI_R1:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R1.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c.log
+    jobid: 102
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0315_c.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R2.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R1.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0315_c
+
+umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c.log
+Submitted job 102 with external jobid '3461182.hpc-batch'.
+[Mon May 16 20:44:21 2022]
+Finished job 116.
+13 of 136 steps (10%) done
+
+[Mon May 16 20:44:21 2022]
+rule add_UMI_R3:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f.log
+    jobid: 95
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0472_f.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R2.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_f
+
+umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f.log
+Submitted job 95 with external jobid '3461183.hpc-batch'.
+[Mon May 16 20:44:37 2022]
+Finished job 128.
+14 of 136 steps (10%) done
+
+[Mon May 16 20:44:37 2022]
+rule add_UMI_R3:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c.log
+    jobid: 103
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0315_c.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R2.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R3.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0315_c
+
+umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c.log
+Submitted job 103 with external jobid '3461184.hpc-batch'.
+[Mon May 16 20:45:30 2022]
+Finished job 123.
+15 of 136 steps (11%) done
+
+[Mon May 16 20:45:30 2022]
+rule add_UMI_R1:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f.log
+    jobid: 100
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0476_f.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R2.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_f
+
+umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f.log
+Submitted job 100 with external jobid '3461186.hpc-batch'.
+[Mon May 16 20:46:42 2022]
+Finished job 132.
+16 of 136 steps (12%) done
+
+[Mon May 16 20:46:42 2022]
+rule add_UMI_R1:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f.log
+    jobid: 106
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0479_f.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R2.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0479_f
+
+umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f.log
+Submitted job 106 with external jobid '3461187.hpc-batch'.
+[Mon May 16 20:47:21 2022]
+Finished job 125.
+17 of 136 steps (12%) done
+
+[Mon May 16 20:47:21 2022]
+rule add_UMI_R3:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f.log
+    jobid: 101
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0476_f.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R2.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_f
+
+umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f.log
+Submitted job 101 with external jobid '3461188.hpc-batch'.
+[Mon May 16 20:47:29 2022]
+Finished job 117.
+18 of 136 steps (13%) done
+
+[Mon May 16 20:47:29 2022]
+rule add_UMI_R1:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R1.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m.log
+    jobid: 96
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0476_m.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R2.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R1.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_m
+
+umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m.log
+Submitted job 96 with external jobid '3461189.hpc-batch'.
+[Mon May 16 20:48:01 2022]
+Finished job 134.
+19 of 136 steps (14%) done
+
+[Mon May 16 20:48:01 2022]
+rule add_UMI_R3:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f.log
+    jobid: 107
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0479_f.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R2.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R3.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0479_f
+
+umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f.log
+Submitted job 107 with external jobid '3461191.hpc-batch'.
+[Mon May 16 20:48:34 2022]
+Finished job 108.
+20 of 136 steps (15%) done
+
+[Mon May 16 20:48:34 2022]
+rule add_UMI_R1:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R1.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m.log
+    jobid: 90
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0315_m.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R2.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R1.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0315_m
+
+umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m.log
+Submitted job 90 with external jobid '3461192.hpc-batch'.
+[Mon May 16 20:48:47 2022]
+Finished job 119.
+21 of 136 steps (15%) done
+
+[Mon May 16 20:48:47 2022]
+rule add_UMI_R3:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m.log
+    jobid: 97
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0476_m.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R2.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R3.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_m
+
+umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m.log
+Submitted job 97 with external jobid '3461193.hpc-batch'.
+[Mon May 16 20:49:56 2022]
+Finished job 110.
+22 of 136 steps (16%) done
+
+[Mon May 16 20:49:56 2022]
+rule add_UMI_R3:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m.log
+    jobid: 91
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0315_m.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R2.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R3.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0315_m
+
+umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m.log
+Submitted job 91 with external jobid '3461194.hpc-batch'.
+[Mon May 16 20:50:41 2022]
+Finished job 129.
+23 of 136 steps (17%) done
+
+[Mon May 16 20:50:41 2022]
+rule add_UMI_R1:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R1.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c.log
+    jobid: 104
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0476_c.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R1.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R2.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_c
+
+umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c.log
+Submitted job 104 with external jobid '3461195.hpc-batch'.
+[Mon May 16 20:51:57 2022]
+Finished job 131.
+24 of 136 steps (18%) done
+
+[Mon May 16 20:51:57 2022]
+rule add_UMI_R3:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c.log
+    jobid: 105
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0476_c.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R2.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_c
+
+umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c.log
+Submitted job 105 with external jobid '3461196.hpc-batch'.
+[Mon May 16 20:53:54 2022]
+Finished job 111.
+25 of 136 steps (18%) done
+
+[Mon May 16 20:53:54 2022]
+rule add_UMI_R1:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R1.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c.log
+    jobid: 92
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0472_c.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R2.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R1.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_c
+
+umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c.log
+Submitted job 92 with external jobid '3461199.hpc-batch'.
+[Mon May 16 20:54:31 2022]
+Finished job 120.
+26 of 136 steps (19%) done
+
+[Mon May 16 20:54:31 2022]
+rule add_UMI_R1:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R1.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m.log
+    jobid: 98
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0472_m.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R1.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R2.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_m
+
+umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m.log
+Submitted job 98 with external jobid '3461200.hpc-batch'.
+[Mon May 16 20:55:47 2022]
+Finished job 122.
+27 of 136 steps (20%) done
+
+[Mon May 16 20:55:47 2022]
+rule add_UMI_R3:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m.log
+    jobid: 99
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0472_m.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R2.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_m
+
+umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m.log
+Submitted job 99 with external jobid '3461202.hpc-batch'.
+[Mon May 16 20:56:28 2022]
+Finished job 113.
+28 of 136 steps (21%) done
+
+[Mon May 16 20:56:28 2022]
+rule add_UMI_R3:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c.log
+    jobid: 93
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0472_c.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R2.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_c
+
+umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c.log
+Submitted job 93 with external jobid '3461203.hpc-batch'.
+[Mon May 16 21:53:18 2022]
+Finished job 94.
+29 of 136 steps (21%) done
+[Mon May 16 21:54:48 2022]
+Finished job 98.
+30 of 136 steps (22%) done
+[Mon May 16 21:55:08 2022]
+Finished job 102.
+31 of 136 steps (23%) done
+[Mon May 16 21:55:43 2022]
+Finished job 95.
+32 of 136 steps (24%) done
+
+[Mon May 16 21:55:43 2022]
+rule trim:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R3_UMI.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_f_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_f_R2_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0472_f.log
+    jobid: 83
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/040_trim/Keimbahn/KB0472_f.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R3_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R1_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_f
+    threads: 16
+
+mkdir -p `dirname /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0472_f_R1.fastq.gz` 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0472_f.log & java -Xmx4g -XX:ParallelGCThreads=16 -jar ${CONDA_PREFIX}/share/trimmomatic-0.39-2/trimmomatic.jar PE -threads 16 -phred33 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R3_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_f_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0472_f_R1.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_f_R2_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0472_f_R2.fastq.gz ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa:2:30:10 CROP:149 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:54 >> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0472_f.log 2>&1
+Submitted job 83 with external jobid '3461253.hpc-batch'.
+[Mon May 16 21:56:50 2022]
+Error in rule trim:
+    jobid: 83
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_f_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_f_R2_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0472_f.log (check log file(s) for error message)
+    conda-env: /home/yasinl/V7_Nextseq_Hg38/.snakemake/conda/54a2ae2e
+    shell:
+        mkdir -p `dirname /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0472_f_R1.fastq.gz` 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0472_f.log & java -Xmx4g -XX:ParallelGCThreads=16 -jar ${CONDA_PREFIX}/share/trimmomatic-0.39-2/trimmomatic.jar PE -threads 16 -phred33 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R3_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_f_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0472_f_R1.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_f_R2_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0472_f_R2.fastq.gz ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa:2:30:10 CROP:149 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:54 >> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0472_f.log 2>&1
+        (exited with non-zero exit code)
+    cluster_jobid: 3461253.hpc-batch
+
+Error executing rule trim on cluster (jobid: 83, external: 3461253.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp._v1h9py9/snakejob.trim.83.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Mon May 16 21:57:54 2022]
+Finished job 103.
+33 of 136 steps (24%) done
+
+[Mon May 16 21:57:54 2022]
+rule trim:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R3_UMI.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0315_c_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0315_c_R2_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0315_c.log
+    jobid: 87
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/040_trim/Keimbahn/KB0315_c.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R3_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0315_c
+    threads: 16
+
+mkdir -p `dirname /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0315_c_R1.fastq.gz` 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0315_c.log & java -Xmx4g -XX:ParallelGCThreads=16 -jar ${CONDA_PREFIX}/share/trimmomatic-0.39-2/trimmomatic.jar PE -threads 16 -phred33 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R3_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0315_c_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0315_c_R1.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0315_c_R2_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0315_c_R2.fastq.gz ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa:2:30:10 CROP:149 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:54 >> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0315_c.log 2>&1
+Submitted job 87 with external jobid '3461254.hpc-batch'.
+[Mon May 16 21:58:58 2022]
+Error in rule trim:
+    jobid: 87
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0315_c_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0315_c_R2_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0315_c.log (check log file(s) for error message)
+    conda-env: /home/yasinl/V7_Nextseq_Hg38/.snakemake/conda/54a2ae2e
+    shell:
+        mkdir -p `dirname /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0315_c_R1.fastq.gz` 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0315_c.log & java -Xmx4g -XX:ParallelGCThreads=16 -jar ${CONDA_PREFIX}/share/trimmomatic-0.39-2/trimmomatic.jar PE -threads 16 -phred33 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R3_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0315_c_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0315_c_R1.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0315_c_R2_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0315_c_R2.fastq.gz ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa:2:30:10 CROP:149 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:54 >> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0315_c.log 2>&1
+        (exited with non-zero exit code)
+    cluster_jobid: 3461254.hpc-batch
+
+Error executing rule trim on cluster (jobid: 87, external: 3461254.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp._v1h9py9/snakejob.trim.87.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Mon May 16 22:01:30 2022]
+Finished job 100.
+34 of 136 steps (25%) done
+[Mon May 16 22:04:08 2022]
+Finished job 99.
+35 of 136 steps (26%) done
+
+[Mon May 16 22:04:08 2022]
+rule trim:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R3_UMI.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_m_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_m_R2_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0472_m.log
+    jobid: 85
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/040_trim/Keimbahn/KB0472_m.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R3_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R1_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_m
+    threads: 16
+
+mkdir -p `dirname /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0472_m_R1.fastq.gz` 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0472_m.log & java -Xmx4g -XX:ParallelGCThreads=16 -jar ${CONDA_PREFIX}/share/trimmomatic-0.39-2/trimmomatic.jar PE -threads 16 -phred33 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R3_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_m_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0472_m_R1.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_m_R2_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0472_m_R2.fastq.gz ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa:2:30:10 CROP:149 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:54 >> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0472_m.log 2>&1
+Submitted job 85 with external jobid '3461255.hpc-batch'.
+[Mon May 16 22:04:50 2022]
+Finished job 101.
+36 of 136 steps (26%) done
+
+[Mon May 16 22:04:50 2022]
+rule trim:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3_UMI.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R2_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0476_f.log
+    jobid: 86
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/040_trim/Keimbahn/KB0476_f.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_f
+    threads: 16
+
+mkdir -p `dirname /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0476_f_R1.fastq.gz` 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0476_f.log & java -Xmx4g -XX:ParallelGCThreads=16 -jar ${CONDA_PREFIX}/share/trimmomatic-0.39-2/trimmomatic.jar PE -threads 16 -phred33 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0476_f_R1.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R2_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0476_f_R2.fastq.gz ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa:2:30:10 CROP:149 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:54 >> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0476_f.log 2>&1
+Submitted job 86 with external jobid '3461257.hpc-batch'.
+[Mon May 16 22:04:53 2022]
+Finished job 106.
+37 of 136 steps (27%) done
+[Mon May 16 22:05:06 2022]
+Error in rule trim:
+    jobid: 85
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_m_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_m_R2_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0472_m.log (check log file(s) for error message)
+    conda-env: /home/yasinl/V7_Nextseq_Hg38/.snakemake/conda/54a2ae2e
+    shell:
+        mkdir -p `dirname /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0472_m_R1.fastq.gz` 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0472_m.log & java -Xmx4g -XX:ParallelGCThreads=16 -jar ${CONDA_PREFIX}/share/trimmomatic-0.39-2/trimmomatic.jar PE -threads 16 -phred33 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R3_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_m_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0472_m_R1.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_m_R2_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0472_m_R2.fastq.gz ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa:2:30:10 CROP:149 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:54 >> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0472_m.log 2>&1
+        (exited with non-zero exit code)
+    cluster_jobid: 3461255.hpc-batch
+
+Error executing rule trim on cluster (jobid: 85, external: 3461255.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp._v1h9py9/snakejob.trim.85.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Mon May 16 22:05:32 2022]
+Error in rule trim:
+    jobid: 86
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R2_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0476_f.log (check log file(s) for error message)
+    conda-env: /home/yasinl/V7_Nextseq_Hg38/.snakemake/conda/54a2ae2e
+    shell:
+        mkdir -p `dirname /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0476_f_R1.fastq.gz` 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0476_f.log & java -Xmx4g -XX:ParallelGCThreads=16 -jar ${CONDA_PREFIX}/share/trimmomatic-0.39-2/trimmomatic.jar PE -threads 16 -phred33 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0476_f_R1.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R2_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0476_f_R2.fastq.gz ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa:2:30:10 CROP:149 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:54 >> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0476_f.log 2>&1
+        (exited with non-zero exit code)
+    cluster_jobid: 3461257.hpc-batch
+
+Error executing rule trim on cluster (jobid: 86, external: 3461257.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp._v1h9py9/snakejob.trim.86.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Mon May 16 22:06:59 2022]
+Finished job 96.
+38 of 136 steps (28%) done
+[Mon May 16 22:08:51 2022]
+Finished job 107.
+39 of 136 steps (29%) done
+
+[Mon May 16 22:08:51 2022]
+rule trim:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R3_UMI.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0479_f_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0479_f_R2_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0479_f.log
+    jobid: 89
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/040_trim/Keimbahn/KB0479_f.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R3_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0479_f
+    threads: 16
+
+mkdir -p `dirname /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0479_f_R1.fastq.gz` 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0479_f.log & java -Xmx4g -XX:ParallelGCThreads=16 -jar ${CONDA_PREFIX}/share/trimmomatic-0.39-2/trimmomatic.jar PE -threads 16 -phred33 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R3_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0479_f_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0479_f_R1.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0479_f_R2_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0479_f_R2.fastq.gz ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa:2:30:10 CROP:149 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:54 >> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0479_f.log 2>&1
+Submitted job 89 with external jobid '3461258.hpc-batch'.
+[Mon May 16 22:09:59 2022]
+Error in rule trim:
+    jobid: 89
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0479_f_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0479_f_R2_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0479_f.log (check log file(s) for error message)
+    conda-env: /home/yasinl/V7_Nextseq_Hg38/.snakemake/conda/54a2ae2e
+    shell:
+        mkdir -p `dirname /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0479_f_R1.fastq.gz` 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0479_f.log & java -Xmx4g -XX:ParallelGCThreads=16 -jar ${CONDA_PREFIX}/share/trimmomatic-0.39-2/trimmomatic.jar PE -threads 16 -phred33 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R3_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0479_f_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0479_f_R1.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0479_f_R2_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0479_f_R2.fastq.gz ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa:2:30:10 CROP:149 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:54 >> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0479_f.log 2>&1
+        (exited with non-zero exit code)
+    cluster_jobid: 3461258.hpc-batch
+
+Error executing rule trim on cluster (jobid: 89, external: 3461258.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp._v1h9py9/snakejob.trim.89.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Mon May 16 22:10:20 2022]
+Finished job 97.
+40 of 136 steps (29%) done
+
+[Mon May 16 22:10:20 2022]
+rule trim:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R3_UMI.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_m_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_m_R2_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0476_m.log
+    jobid: 84
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/040_trim/Keimbahn/KB0476_m.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R3_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R1_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_m
+    threads: 16
+
+mkdir -p `dirname /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0476_m_R1.fastq.gz` 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0476_m.log & java -Xmx4g -XX:ParallelGCThreads=16 -jar ${CONDA_PREFIX}/share/trimmomatic-0.39-2/trimmomatic.jar PE -threads 16 -phred33 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R3_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_m_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0476_m_R1.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_m_R2_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0476_m_R2.fastq.gz ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa:2:30:10 CROP:149 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:54 >> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0476_m.log 2>&1
+Submitted job 84 with external jobid '3461259.hpc-batch'.
+[Mon May 16 22:11:00 2022]
+Finished job 90.
+41 of 136 steps (30%) done
+[Mon May 16 22:11:21 2022]
+Error in rule trim:
+    jobid: 84
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_m_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_m_R2_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0476_m.log (check log file(s) for error message)
+    conda-env: /home/yasinl/V7_Nextseq_Hg38/.snakemake/conda/54a2ae2e
+    shell:
+        mkdir -p `dirname /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0476_m_R1.fastq.gz` 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0476_m.log & java -Xmx4g -XX:ParallelGCThreads=16 -jar ${CONDA_PREFIX}/share/trimmomatic-0.39-2/trimmomatic.jar PE -threads 16 -phred33 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R3_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_m_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0476_m_R1.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_m_R2_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0476_m_R2.fastq.gz ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa:2:30:10 CROP:149 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:54 >> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0476_m.log 2>&1
+        (exited with non-zero exit code)
+    cluster_jobid: 3461259.hpc-batch
+
+Error executing rule trim on cluster (jobid: 84, external: 3461259.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp._v1h9py9/snakejob.trim.84.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Mon May 16 22:13:44 2022]
+Finished job 91.
+42 of 136 steps (31%) done
+
+[Mon May 16 22:13:44 2022]
+rule trim:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R3_UMI.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0315_m_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0315_m_R2_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0315_m.log
+    jobid: 81
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/040_trim/Keimbahn/KB0315_m.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R3_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0315_m
+    threads: 16
+
+mkdir -p `dirname /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0315_m_R1.fastq.gz` 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0315_m.log & java -Xmx4g -XX:ParallelGCThreads=16 -jar ${CONDA_PREFIX}/share/trimmomatic-0.39-2/trimmomatic.jar PE -threads 16 -phred33 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R3_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0315_m_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0315_m_R1.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0315_m_R2_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0315_m_R2.fastq.gz ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa:2:30:10 CROP:149 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:54 >> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0315_m.log 2>&1
+Submitted job 81 with external jobid '3461260.hpc-batch'.
+[Mon May 16 22:14:37 2022]
+Error in rule trim:
+    jobid: 81
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0315_m_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0315_m_R2_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0315_m.log (check log file(s) for error message)
+    conda-env: /home/yasinl/V7_Nextseq_Hg38/.snakemake/conda/54a2ae2e
+    shell:
+        mkdir -p `dirname /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0315_m_R1.fastq.gz` 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0315_m.log & java -Xmx4g -XX:ParallelGCThreads=16 -jar ${CONDA_PREFIX}/share/trimmomatic-0.39-2/trimmomatic.jar PE -threads 16 -phred33 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R3_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0315_m_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0315_m_R1.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0315_m_R2_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0315_m_R2.fastq.gz ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa:2:30:10 CROP:149 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:54 >> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0315_m.log 2>&1
+        (exited with non-zero exit code)
+    cluster_jobid: 3461260.hpc-batch
+
+Error executing rule trim on cluster (jobid: 81, external: 3461260.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp._v1h9py9/snakejob.trim.81.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Mon May 16 22:19:29 2022]
+Finished job 104.
+43 of 136 steps (32%) done
+[Mon May 16 22:23:40 2022]
+Finished job 105.
+44 of 136 steps (32%) done
+
+[Mon May 16 22:23:40 2022]
+rule trim:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R3_UMI.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_c_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_c_R2_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0476_c.log
+    jobid: 88
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/040_trim/Keimbahn/KB0476_c.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R3_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_c
+    threads: 16
+
+mkdir -p `dirname /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0476_c_R1.fastq.gz` 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0476_c.log & java -Xmx4g -XX:ParallelGCThreads=16 -jar ${CONDA_PREFIX}/share/trimmomatic-0.39-2/trimmomatic.jar PE -threads 16 -phred33 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R3_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_c_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0476_c_R1.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_c_R2_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0476_c_R2.fastq.gz ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa:2:30:10 CROP:149 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:54 >> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0476_c.log 2>&1
+Submitted job 88 with external jobid '3461263.hpc-batch'.
+[Mon May 16 22:24:24 2022]
+Error in rule trim:
+    jobid: 88
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_c_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_c_R2_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0476_c.log (check log file(s) for error message)
+    conda-env: /home/yasinl/V7_Nextseq_Hg38/.snakemake/conda/54a2ae2e
+    shell:
+        mkdir -p `dirname /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0476_c_R1.fastq.gz` 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0476_c.log & java -Xmx4g -XX:ParallelGCThreads=16 -jar ${CONDA_PREFIX}/share/trimmomatic-0.39-2/trimmomatic.jar PE -threads 16 -phred33 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R3_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_c_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0476_c_R1.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_c_R2_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0476_c_R2.fastq.gz ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa:2:30:10 CROP:149 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:54 >> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0476_c.log 2>&1
+        (exited with non-zero exit code)
+    cluster_jobid: 3461263.hpc-batch
+
+Error executing rule trim on cluster (jobid: 88, external: 3461263.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp._v1h9py9/snakejob.trim.88.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Mon May 16 22:32:43 2022]
+Finished job 92.
+45 of 136 steps (33%) done
+[Mon May 16 23:02:16 2022]
+Finished job 93.
+46 of 136 steps (34%) done
+
+[Mon May 16 23:02:16 2022]
+rule trim:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R3_UMI.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_c_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_c_R2_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0472_c.log
+    jobid: 82
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/040_trim/Keimbahn/KB0472_c.benchmark
+    reason: Updated input files: ; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R3_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_c
+    threads: 16
+
+mkdir -p `dirname /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0472_c_R1.fastq.gz` 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0472_c.log & java -Xmx4g -XX:ParallelGCThreads=16 -jar ${CONDA_PREFIX}/share/trimmomatic-0.39-2/trimmomatic.jar PE -threads 16 -phred33 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R3_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_c_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0472_c_R1.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_c_R2_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0472_c_R2.fastq.gz ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa:2:30:10 CROP:149 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:54 >> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0472_c.log 2>&1
+Submitted job 82 with external jobid '3461512.hpc-batch'.
+[Mon May 16 23:03:14 2022]
+Error in rule trim:
+    jobid: 82
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_c_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_c_R2_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0472_c.log (check log file(s) for error message)
+    conda-env: /home/yasinl/V7_Nextseq_Hg38/.snakemake/conda/54a2ae2e
+    shell:
+        mkdir -p `dirname /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0472_c_R1.fastq.gz` 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0472_c.log & java -Xmx4g -XX:ParallelGCThreads=16 -jar ${CONDA_PREFIX}/share/trimmomatic-0.39-2/trimmomatic.jar PE -threads 16 -phred33 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R3_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_c_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0472_c_R1.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0472_c_R2_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Unpaired/Keimbahn/KB0472_c_R2.fastq.gz ILLUMINACLIP:${CONDA_PREFIX}/share/trimmomatic-0.39-1/adapters/TruSeq3-PE.fa:2:30:10 CROP:149 LEADING:10 TRAILING:10 SLIDINGWINDOW:4:15 MINLEN:54 >> /gpfs/project/projects/spike/AG_Borkhardt/Logs/040_trim/Keimbahn/KB0472_c.log 2>&1
+        (exited with non-zero exit code)
+    cluster_jobid: 3461512.hpc-batch
+
+Error executing rule trim on cluster (jobid: 82, external: 3461512.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp._v1h9py9/snakejob.trim.82.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/yasinl/V7_Nextseq_Hg38/.snakemake/log/2022-05-16T201010.438832.snakemake.log

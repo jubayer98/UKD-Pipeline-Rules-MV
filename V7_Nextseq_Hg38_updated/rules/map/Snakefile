@@ -1,0 +1,186 @@
+rule bwa:
+    # Do the alignment, read paring, introduction of the read groups, sam-import and sorting on a pipe. Paired-end flavour
+    input:
+        forward="{prefix}%s%s/Paired/{sample}_R1_UMI.fastq.gz" % (config['dirs']['intermediate'], config['stepnames']['trim']),
+        reverse="{prefix}%s%s/Paired/{sample}_R2_UMI.fastq.gz" % (config['dirs']['intermediate'], config['stepnames']['trim']),
+        references=lambda wildcards: ["%s%s%s%s" % (wildcards.prefix, config['dirs']['references'], get_reference_genome(wildcards.sample, SAMPLESHEETS, config)['file'], ending) for ending in config['endings_bwa']]
+    output:
+        "{prefix}%s%s/Hg38/{sample}.Hg38.sam" % (config['dirs']['intermediate'], config['stepnames']['map'])
+    log:
+        bwa_mem="{prefix}%s%s/{sample}.bwa_mem.log" % (config['dirs']['logs'], config['stepnames']['map']),
+        #sam_view="{prefix}%s%s/{sample}.samtools_view.log" % (config['dirs']['logs'], config['stepnames']['map']),
+        #sam_sort="{prefix}%s%s/{sample}.samtools_sort.log" % (config['dirs']['logs'], config['stepnames']['map']),
+    benchmark:
+        "{prefix}%s%s/{sample}.benchmark" % (config['dirs']['benchmarks'], config['stepnames']['map'])
+    conda:
+        "envs/spike_map.yaml"
+    threads:
+        6
+    params:
+        header=lambda wildcards: get_bwa_mem_header(wildcards.sample, SAMPLESHEETS, config)
+    shell:
+#        "module load SamTools/1.11; module load BWA/0.7.15; "
+        # wow: I just saw that the number of threads has an impact on the results!
+        # thus, for the moment, we should use the same number of threads as Michael's
+        # original pipeline, which is 3
+        'bwa mem -t {threads} -v 2 -M'
+        '{params.header}'
+        ' {input.references[0]}'
+        ' {input.forward} {input.reverse} 2> {log.bwa_mem} > {output}'
+
+##### convert to sorted bam, index & cleanup
+rule sam_cleanup:
+    input:
+        "{prefix}%s%s/Hg38/{sample}.Hg38.sam" % (config['dirs']['intermediate'], config['stepnames']['map'])
+    output:
+        "{prefix}%s%s/Hg38/{sample}.Hg38.srt.bam" % (config['dirs']['intermediate'], config['stepnames']['map']),
+        #bai="{prefix}%s%s/{sample}.nodup.srt.bai" % (config['dirs']['intermediate'], config['stepnames']['nodup']),
+        #metric="{prefix}%s%s/{sample}.nodup.srt.bam.metrics" % (config['dirs']['intermediate'], config['stepnames']['nodup']),
+    log:
+        "{prefix}%s%s/Hg38/{sample}.log" % (config['dirs']['logs'], config['stepnames']['map'])
+#    conda:
+#        "envs/spike_map.yaml"
+    threads:
+        1  # since this picard tools function doesn't support multithreading :-(
+    shell:
+        "module load SamTools/1.11; module load Picard/2.25.1; "
+        "java"
+        " -Xmx4g"
+        " -XX:ParallelGCThreads={threads}"
+#        " -jar ${{CONDA_PREFIX}}/share/picard-2.23.8-0/picard.jar"
+        " -jar /software/picard/2.25.1/picard.jar"
+        " SortSam"
+        " I={input}"
+        " O={output}"
+        " SORT_ORDER=coordinate"
+        " CREATE_INDEX=true"
+        " VALIDATION_STRINGENCY=LENIENT"
+        " 2> {log}"
+        # delete input file after process finished
+        " && rm -v -f {input}"
+
+rule samtools_index_sort:
+    # Create an index for filtered bam file
+    input:
+        rules.sam_cleanup.output
+    output:
+        "{prefix}%s%s/Hg38/{sample}.Hg38.srt.bai" % (config['dirs']['intermediate'], config['stepnames']['map'])
+    log:
+        "{prefix}%s%s/Hg38/{sample}.samtools_view.log" % (config['dirs']['logs'], config['stepnames']['map'])
+    benchmark:
+        "{prefix}%s%s/Hg38/{sample}.benchmark" % (config['dirs']['benchmarks'], config['stepnames']['map'])
+#    conda:
+#        "envs/spike_map.yaml"
+    threads:
+        1
+    shell:
+        "module load SamTools/1.11; "
+        'samtools index'
+        ' {input}'
+        ' {output}'
+        ' > {log} 2>&1'
+
+rule MBC_remove_duplicates:
+    input:
+        bam="{prefix}%s%s/Hg38/{sample}.Hg38.srt.bam" % (config['dirs']['intermediate'], config['stepnames']['map']),
+        bai=rules.samtools_index_sort.output
+    output:
+        "{prefix}%s%s/Hg38/{sample}.UMI.nodup.srt.bam" % (config['dirs']['intermediate'], config['stepnames']['UMI'])
+        #bai="{prefix}%s%s/{sample}.UMI.nodup.srt.bai" % (config['dirs']['intermediate'], config['stepnames']['nodup']),
+        #metric="{prefix}%s%s/{sample}" % (config['dirs']['intermediate'], config['stepnames']['UMI']),
+    log:
+        "{prefix}%s%s/Hg38/{sample}.log" % (config['dirs']['logs'], config['stepnames']['UMI'])
+    benchmark:
+        "{prefix}%s%s/Hg38/{sample}.benchmark" % (config['dirs']['benchmarks'], config['stepnames']['UMI'])
+#    conda:
+#        "envs/UMI.yaml"
+    threads:
+        1
+    params:
+        "{prefix}%s%s/Hg38/{sample}." % (config['dirs']['intermediate'], config['stepnames']['UMI'])
+    shell:
+#        "conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;"
+        "umi_tools"
+        " dedup"
+        " -I {input.bam}"
+        " --paired"
+        " --unpaired-reads discard"
+        " --chimeric-pairs discard"
+        " --output-stats {params}"
+        " -S {output}"
+        " > {log} 2>&1"
+
+rule intersect:
+    input:
+        bam=rules.MBC_remove_duplicates.output,
+        exometrack=lambda wildcards: "%s%s%s" % (config['dirs']['prefix'], config['dirs']['references'], get_reference_exometrack(wildcards.sample, SAMPLESHEETS, config)),
+    output:
+        "{prefix}%s%s/Hg38/{sample}.UMI.target.nodup.srt.bam" % (config['dirs']['intermediate'], config['stepnames']['UMI'])
+#    conda:
+#        "envs/bedtools.yaml"
+    log:
+        "{prefix}%s%s/Hg38/{sample}.intersect.log" % (config['dirs']['logs'], config['stepnames']['UMI'])
+    benchmark:
+        "{prefix}%s%s/Hg38/{sample}.intersect.benchmark" % (config['dirs']['benchmarks'], config['stepnames']['UMI'])
+    threads:
+        1
+    shell:
+        'module load bedtools/2.26.0 ; '
+        'bedtools'
+        ' intersect'
+        ' -a {input.bam}'
+        ' -b {input.exometrack}'
+        ' -wa'
+        ' 2> {log}'
+        '  > {output}'
+
+rule samtools_index:
+    # Create an index for filtered bam file
+    input:
+        rules.intersect.output
+    output:
+        "{prefix}%s%s/Hg38/{sample}.UMI.target.nodup.srt.bai" % (config['dirs']['intermediate'], config['stepnames']['UMI'])
+    log:
+        "{prefix}%s%s/Hg38/{sample}.samtools_view.log" % (config['dirs']['logs'], config['stepnames']['UMI'])
+    benchmark:
+        "{prefix}%s%s/Hg38/{sample}.benchmark" % (config['dirs']['benchmarks'], config['stepnames']['UMI'])
+#    conda:
+#        "envs/spike_map.yaml"
+    threads:
+        1
+    shell:
+        "module load SamTools/1.11; "
+        'samtools index'
+        ' {input}'
+        ' {output}'
+        ' > {log} 2>&1'
+'''
+rule qualimap:
+    input:
+        bam=rules.intersect.output,
+        bai=rules.samtools_index.output,
+        exometrack=lambda wildcards: '%s%s%s' % (wildcards.prefix, config['dirs']['references'], get_reference_exometrack(wildcards.sample, SAMPLESHEETS, config, returnfield="qualimap_bed")),
+    output:
+        "{prefix}%s%s/Hg38/{sample}/qualimapReport.html" % (config['dirs']['intermediate'], config['stepnames']['qualimap']),
+    log:
+        "{prefix}%s%s/Hg38/{sample}.log" % (config['dirs']['logs'], config['stepnames']['qualimap']),
+    benchmark:
+        "{prefix}%s%s/Hg38/{sample}.benchmark" % (config['dirs']['benchmarks'], config['stepnames']['qualimap'])
+    params:
+        "{prefix}%s%s/Hg38/{sample}/" % (config['dirs']['intermediate'], config['stepnames']['qualimap']),
+    threads:
+        6
+    shell:
+        'qualimap bamqc'
+        ' -bam {input.bam}'
+        ' --feature-file {input.exometrack}'
+        ' --collect-overlap-pairs'
+        ' --genome-gc-distr HUMAN'
+        ' -nr 5000'
+        ' --java-mem-size=20G'
+        ' -nt {threads}'
+        ' -outformat HTML'
+        ' -outdir {params}'
+        ' > {log}'
+
+'''

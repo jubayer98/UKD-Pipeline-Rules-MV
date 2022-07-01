@@ -1,0 +1,29 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	check_coverage
+	xenograft_check
+
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 100
+Job counts:
+	count	jobs
+	1	check_complete
+	1
+
+[Fri Apr 22 11:28:29 2022]
+localrule check_complete:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Inputs/Raw_Illumina/220321_NB552271_0081_AHLHGHBGXL/RTAComplete.txt
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/005_check_complete/220321_NB552271_0081_AHLHGHBGXL.complete.txt
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/005_check_complete/220321_NB552271_0081_AHLHGHBGXL.log
+    jobid: 0
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/005_check_complete/220321_NB552271_0081_AHLHGHBGXL.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/005_check_complete/220321_NB552271_0081_AHLHGHBGXL.complete.txt
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, run=220321_NB552271_0081_AHLHGHBGXL
+
+[Fri Apr 22 11:28:29 2022]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /home/yasinl/V7_Nextseq_Hg38/.snakemake/log/2022-04-22T112805.624669.snakemake.log

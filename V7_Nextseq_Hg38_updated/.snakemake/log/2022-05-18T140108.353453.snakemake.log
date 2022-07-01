@@ -1,0 +1,190 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	check_coverage
+	xenograft_check
+
+Building DAG of jobs...
+Creating conda environment rules/gatk/envs/spike_qualimap.yaml...
+Downloading remote packages.
+Environment for rules/gatk/envs/spike_qualimap.yaml created (location: .snakemake/conda/d81c5bc7)
+Using shell: /bin/bash
+Provided cluster nodes: 50
+Job counts:
+	count	jobs
+	1	MBC_remove_duplicates
+	1	bwa
+	1	gatk4_ApplyBQSR
+	1	gatk4_BaseRecalibrator
+	1	intersect
+	9	qualimap
+	1	sam_cleanup
+	1	samtools_index
+	1	samtools_index_sort
+	17
+
+[Wed May 18 14:01:50 2022]
+rule qualimap:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0315_m.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam, /gpfs/project/projects/spike/AG_Borkhardt/References/Target_Region_Hg38_V7_qualimap.bed
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0315_m/qualimapReport.html
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0315_m.log
+    jobid: 0
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/087_qualimap/Hg38/Keimbahn/KB0315_m.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0315_m/qualimapReport.html
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0315_m
+    threads: 6
+
+qualimap bamqc -bam /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0315_m.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam --feature-file /gpfs/project/projects/spike/AG_Borkhardt/References/Target_Region_Hg38_V7_qualimap.bed --collect-overlap-pairs --genome-gc-distr HUMAN -nr 5000 --java-mem-size=20G -nt 6 -outformat HTML -outdir /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0315_m/ > /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0315_m.log
+Submitted job 0 with external jobid '3467696.hpc-batch'.
+
+[Wed May 18 14:01:50 2022]
+rule bwa:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R2_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.dict, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.amb, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.ann, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.bwt, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.fai, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.pac, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.sa
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_f.Hg38.sam
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/060_map/Keimbahn/KB0476_f.bwa_mem.log
+    jobid: 76
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/060_map/Keimbahn/KB0476_f.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_f.Hg38.sam; Updated input files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R1_UMI.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R2_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_f
+    threads: 6
+
+bwa mem -t 6 -v 2 -M -R "@RG\tID:220425_NB552271_0084_AHLJWWBGXL\tCN:Department_of_Pediatric_Oncology_Dusseldorf\tPU:HLJWWBGXL\tDT:2022/04/25\tPL:ILLUMINA\tLB:SureSelectHumanAllExonV7\tSM:KB0476_f"  /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R2_UMI.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/060_map/Keimbahn/KB0476_f.bwa_mem.log > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_f.Hg38.sam
+Submitted job 76 with external jobid '3467697.hpc-batch'.
+
+[Wed May 18 14:01:50 2022]
+rule qualimap:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_m.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam, /gpfs/project/projects/spike/AG_Borkhardt/References/Target_Region_Hg38_V7_qualimap.bed
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0476_m/qualimapReport.html
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0476_m.log
+    jobid: 1
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/087_qualimap/Hg38/Keimbahn/KB0476_m.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0476_m/qualimapReport.html
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_m
+    threads: 6
+
+qualimap bamqc -bam /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_m.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam --feature-file /gpfs/project/projects/spike/AG_Borkhardt/References/Target_Region_Hg38_V7_qualimap.bed --collect-overlap-pairs --genome-gc-distr HUMAN -nr 5000 --java-mem-size=20G -nt 6 -outformat HTML -outdir /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0476_m/ > /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0476_m.log
+Submitted job 1 with external jobid '3467698.hpc-batch'.
+
+[Wed May 18 14:01:50 2022]
+rule qualimap:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0472_f.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam, /gpfs/project/projects/spike/AG_Borkhardt/References/Target_Region_Hg38_V7_qualimap.bed
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0472_f/qualimapReport.html
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0472_f.log
+    jobid: 2
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/087_qualimap/Hg38/Keimbahn/KB0472_f.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0472_f/qualimapReport.html
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_f
+    threads: 6
+
+qualimap bamqc -bam /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0472_f.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam --feature-file /gpfs/project/projects/spike/AG_Borkhardt/References/Target_Region_Hg38_V7_qualimap.bed --collect-overlap-pairs --genome-gc-distr HUMAN -nr 5000 --java-mem-size=20G -nt 6 -outformat HTML -outdir /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0472_f/ > /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0472_f.log
+Submitted job 2 with external jobid '3467699.hpc-batch'.
+
+[Wed May 18 14:01:50 2022]
+rule qualimap:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0472_c.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam, /gpfs/project/projects/spike/AG_Borkhardt/References/Target_Region_Hg38_V7_qualimap.bed
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0472_c/qualimapReport.html
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0472_c.log
+    jobid: 3
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/087_qualimap/Hg38/Keimbahn/KB0472_c.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0472_c/qualimapReport.html
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_c
+    threads: 6
+
+qualimap bamqc -bam /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0472_c.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam --feature-file /gpfs/project/projects/spike/AG_Borkhardt/References/Target_Region_Hg38_V7_qualimap.bed --collect-overlap-pairs --genome-gc-distr HUMAN -nr 5000 --java-mem-size=20G -nt 6 -outformat HTML -outdir /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0472_c/ > /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0472_c.log
+Submitted job 3 with external jobid '3467700.hpc-batch'.
+
+[Wed May 18 14:01:50 2022]
+rule qualimap:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0315_c.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam, /gpfs/project/projects/spike/AG_Borkhardt/References/Target_Region_Hg38_V7_qualimap.bed
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0315_c/qualimapReport.html
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0315_c.log
+    jobid: 5
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/087_qualimap/Hg38/Keimbahn/KB0315_c.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0315_c/qualimapReport.html
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0315_c
+    threads: 6
+
+qualimap bamqc -bam /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0315_c.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam --feature-file /gpfs/project/projects/spike/AG_Borkhardt/References/Target_Region_Hg38_V7_qualimap.bed --collect-overlap-pairs --genome-gc-distr HUMAN -nr 5000 --java-mem-size=20G -nt 6 -outformat HTML -outdir /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0315_c/ > /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0315_c.log
+Submitted job 5 with external jobid '3467701.hpc-batch'.
+
+[Wed May 18 14:01:50 2022]
+rule qualimap:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0479_f.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam, /gpfs/project/projects/spike/AG_Borkhardt/References/Target_Region_Hg38_V7_qualimap.bed
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0479_f/qualimapReport.html
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0479_f.log
+    jobid: 6
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/087_qualimap/Hg38/Keimbahn/KB0479_f.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0479_f/qualimapReport.html
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0479_f
+    threads: 6
+
+qualimap bamqc -bam /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0479_f.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam --feature-file /gpfs/project/projects/spike/AG_Borkhardt/References/Target_Region_Hg38_V7_qualimap.bed --collect-overlap-pairs --genome-gc-distr HUMAN -nr 5000 --java-mem-size=20G -nt 6 -outformat HTML -outdir /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0479_f/ > /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0479_f.log
+Submitted job 6 with external jobid '3467702.hpc-batch'.
+
+[Wed May 18 14:01:50 2022]
+rule qualimap:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0472_m.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam, /gpfs/project/projects/spike/AG_Borkhardt/References/Target_Region_Hg38_V7_qualimap.bed
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0472_m/qualimapReport.html
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0472_m.log
+    jobid: 7
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/087_qualimap/Hg38/Keimbahn/KB0472_m.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0472_m/qualimapReport.html
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_m
+    threads: 6
+
+qualimap bamqc -bam /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0472_m.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam --feature-file /gpfs/project/projects/spike/AG_Borkhardt/References/Target_Region_Hg38_V7_qualimap.bed --collect-overlap-pairs --genome-gc-distr HUMAN -nr 5000 --java-mem-size=20G -nt 6 -outformat HTML -outdir /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0472_m/ > /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0472_m.log
+Submitted job 7 with external jobid '3467703.hpc-batch'.
+
+[Wed May 18 14:01:50 2022]
+rule qualimap:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_c.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam, /gpfs/project/projects/spike/AG_Borkhardt/References/Target_Region_Hg38_V7_qualimap.bed
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0476_c/qualimapReport.html
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0476_c.log
+    jobid: 8
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/087_qualimap/Hg38/Keimbahn/KB0476_c.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0476_c/qualimapReport.html
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_c
+    threads: 6
+
+qualimap bamqc -bam /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_c.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam --feature-file /gpfs/project/projects/spike/AG_Borkhardt/References/Target_Region_Hg38_V7_qualimap.bed --collect-overlap-pairs --genome-gc-distr HUMAN -nr 5000 --java-mem-size=20G -nt 6 -outformat HTML -outdir /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0476_c/ > /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0476_c.log
+Submitted job 8 with external jobid '3467704.hpc-batch'.
+[Wed May 18 14:09:05 2022]
+Error in rule bwa:
+    jobid: 76
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_f.Hg38.sam
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/060_map/Keimbahn/KB0476_f.bwa_mem.log (check log file(s) for error message)
+    conda-env: /home/yasinl/V7_Nextseq_Hg38/.snakemake/conda/ed8b811a
+    shell:
+        bwa mem -t 6 -v 2 -M -R "@RG\tID:220425_NB552271_0084_AHLJWWBGXL\tCN:Department_of_Pediatric_Oncology_Dusseldorf\tPU:HLJWWBGXL\tDT:2022/04/25\tPL:ILLUMINA\tLB:SureSelectHumanAllExonV7\tSM:KB0476_f"  /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R1_UMI.fastq.gz /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/040_trim/Paired/Keimbahn/KB0476_f_R2_UMI.fastq.gz 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/060_map/Keimbahn/KB0476_f.bwa_mem.log > /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/060_map/Hg38/Keimbahn/KB0476_f.Hg38.sam
+        (exited with non-zero exit code)
+    cluster_jobid: 3467697.hpc-batch
+
+Error executing rule bwa on cluster (jobid: 76, external: 3467697.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.65io_20w/snakejob.bwa.76.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Wed May 18 14:17:28 2022]
+Finished job 2.
+1 of 17 steps (6%) done
+[Wed May 18 14:18:38 2022]
+Finished job 5.
+2 of 17 steps (12%) done
+[Wed May 18 14:19:19 2022]
+Finished job 6.
+3 of 17 steps (18%) done
+[Wed May 18 14:20:13 2022]
+Finished job 1.
+4 of 17 steps (24%) done
+[Wed May 18 14:22:33 2022]
+Finished job 8.
+5 of 17 steps (29%) done
+[Wed May 18 14:22:59 2022]
+Finished job 0.
+6 of 17 steps (35%) done
+[Wed May 18 14:24:08 2022]
+Finished job 3.
+7 of 17 steps (41%) done
+[Wed May 18 14:24:22 2022]
+Finished job 7.
+8 of 17 steps (47%) done
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/yasinl/V7_Nextseq_Hg38/.snakemake/log/2022-05-18T140108.353453.snakemake.log

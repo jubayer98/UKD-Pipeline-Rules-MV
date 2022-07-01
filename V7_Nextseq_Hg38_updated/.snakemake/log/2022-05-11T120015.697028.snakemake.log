@@ -1,0 +1,19 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	check_coverage
+	xenograft_check
+
+Building DAG of jobs...
+Creating conda environment rules/trim/envs/spike_trim.yaml...
+Downloading remote packages.
+CreateCondaEnvironmentException:
+Could not create conda environment from /home/yasinl/V7_Nextseq_Hg38/rules/trim/envs/spike_trim.yaml:
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... failed
+
+ResolvePackageNotFound: 
+  - openjdk==8.0.192=h14c3975_1003
+
+

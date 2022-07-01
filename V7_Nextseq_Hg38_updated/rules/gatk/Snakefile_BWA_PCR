@@ -1,0 +1,115 @@
+rule gatk4_BaseRecalibrator:
+    # Preprocessing to do a base quality score recalibration with GATK
+    # Generates recalibration table for Base Quality Score Recalibration (BQSR)
+    input:
+        knowns=lambda wildcards: ["%s%s%s%s" % (wildcards.prefix, config['dirs']['references'], known['file'], ending) for known in get_reference_knowns(wildcards.sample, SAMPLESHEETS, config, 'BaseRecalibrator') for ending in ['', ('' if known['file'].endswith('') else '')]],
+	#gatkpackage="%s%sgatk4-4.1.9.0-py39_0.tar.bz2" % (config['dirs']['prefix'], config['dirs']['references']),
+	references=lambda wildcards: ["%s%s%s%s" % (wildcards.prefix, config['dirs']['references'], get_reference_genome(wildcards.sample, SAMPLESHEETS, config)['file'], ending) for ending in config['endings_bwa']],
+        #bam="{prefix}%s%s/{sample}.MBC.new.Hg38.srt.bam" % (config['dirs']['intermediate'], config['stepnames']['UMI']), ## V7
+        bam= "{prefix}%s%s/{sample}.MBC.new.Hg38.srt.bam" % (config['dirs']['intermediate'], config['stepnames']['UMI']),
+	#bam="{prefix}%s%s/{sample}.Hg38.nodup.srt.bam" % (config['dirs']['intermediate'], config['stepnames']['nodup']),## V5
+    output:
+        "{prefix}%s%s/{sample}.GATK4.Hg38.reCal.MBC.srt.bam.table" % (config['dirs']['intermediate'], config['stepnames']['gatk4_BaseRecalibrator']),
+    log:
+        "{prefix}%s%s/{sample}.log" % (config['dirs']['logs'], config['stepnames']['gatk4_BaseRecalibrator'])
+    benchmark:
+        "{prefix}%s%s/{sample}.benchmark" % (config['dirs']['benchmarks'], config['stepnames']['gatk4_BaseRecalibrator'])
+    conda:
+        "envs/spike_gatk.yaml"
+    threads:
+        3
+    params:
+        knowns_settings=lambda wildcards: [' --known-sites %s%s%s ' % (wildcards.prefix, config['dirs']['references'], known['file']) for known in (get_reference_knowns(wildcards.sample, SAMPLESHEETS, config, 'BaseRecalibrator'))],
+    shell:
+        #'if [ $(gatk-register > /dev/null; echo "$?") -eq 1 ]; then rm -rf /tmp/gatk; gatk-register {input.gatkpackage} 2>> {log}; fi && '
+        " gatk  --java-options"
+        " -Xmx6g"#-XX:ParallelGCThreads={threads}"
+        " BaseRecalibrator"
+        " -I {input.bam}"
+        " -R {input.references[0]}"
+        "{params.knowns_settings}"
+        " -O {output}"
+        " 2>> {log} 1>&2"
+
+rule gatk4_ApplyBQSR:
+    # Apply base quality score recalibration
+    # The goal of this procedure is to correct for systematic bias that affect the assignment of base quality scores by the sequencer
+    #  recalibration table for Base Quality Score Recalibration (BQSR)
+    input:
+        references=lambda wildcards: ["%s%s%s%s" % (wildcards.prefix, config['dirs']['references'], get_reference_genome(wildcards.sample, SAMPLESHEETS, config)['file'], ending) for ending in config['endings_bwa']],
+        table=rules.gatk4_BaseRecalibrator.output,
+        Sbam="{prefix}%s%s/{sample}.MBC.new.Hg38.srt.bam" % (config['dirs']['intermediate'], config['stepnames']['UMI']), ## V7
+	#Sbam="{prefix}%s%s/{sample}.Hg38.nodup.srt.bam" % (config['dirs']['intermediate'], config['stepnames']['nodup']),
+	#table="{prefix}%s%s/{sample}.table" % (config['dirs']['intermediate'], config['stepnames']['gatk_BaseRecalibrator']),
+        #table=rules.gatk_IndelRealigner.output.bam,
+    output:
+        "{prefix}%s%s/{sample}.GATK4.Hg38.apBQSR.reCal.MBC.srt.bam" % (config['dirs']['intermediate'], config['stepnames']['gatk4_ApplyBQSR']),
+    log:
+        "{prefix}%s%s/{sample}.log" % (config['dirs']['logs'], config['stepnames']['gatk4_ApplyBQSR'])
+    benchmark:
+        "{prefix}%s%s/{sample}.benchmark" % (config['dirs']['benchmarks'], config['stepnames']['gatk4_ApplyBQSR'])
+    conda:
+        "envs/spike_gatk.yaml"
+    threads:
+        16
+    shell:
+        "gatk --java-options"
+        " -Xmx16g" #-XX:ParallelGCThreads={threads}"
+        " ApplyBQSR"
+        " -I {input.Sbam}"
+        " -R {input.references[0]}"
+        " --bqsr-recal-file {input.table}"
+        " -O {output}"
+        " 2>> {log} 1>&2"
+
+rule exome_coverage:
+    # produce exome coverage statistics for a sample
+    input:
+        #bam=rules.gatk4_ApplyBQSR.output,
+        bam= "{prefix}%s%s/{sample}.new.Hg38.nodup.srt.bam" % (config['dirs']['intermediate'], config['stepnames']['nodup']),
+	#bam=rules.remove_pcr_duplicates.output,
+	#bam= "{prefix}%s%s/{sample}.Hg38.nodup.srt.bam" % (config['dirs']['intermediate'], config['stepnames']['nodup']),
+	#bam= "{prefix}%s%s/{sample}.new.Hg38.nodup.srt.MBC.bam" % (config['dirs']['intermediate'], config['stepnames']['nodup']),
+	#bam= "{prefix}%s%s/{sample}.new.Hg38.srt.MBC.bam" % (config['dirs']['intermediate'], config['stepnames']['map']),
+	#bam="{prefix}%s%s/{sample}.new.Hg38.srt.MBC.bam" % (config['dirs']['intermediate'], config['stepnames']['map']),
+	#bam="{prefix}%s%s/{sample}.new.Hg38.srt.MBC.bam" % (config['dirs']['intermediate'], config['stepnames']['map']), 
+	#agilent=lambda wildcards: '%s%s%s' % (wildcards.prefix, config['dirs']['references'], get_reference_exometrack(wildcards.sample, SAMPLESHEETS, config, returnfield="agilent_coverage_file")),
+	exometrack=lambda wildcards: "%s%s%s" % (config['dirs']['prefix'], config['dirs']['references'], get_reference_exometrack(wildcards.sample, SAMPLESHEETS, config)),
+    output:
+        csv="{prefix}%s%s/{sample}.Hg38.PCR2.exome_coverage.csv" % (config['dirs']['intermediate'], config['stepnames']['exome_coverage']),
+    log:
+        bedtools="{prefix}%s%s/{sample}.Hg38.bedtools.log" % (config['dirs']['logs'], config['stepnames']['exome_coverage']),
+        gawk="{prefix}%s%s/{sample}.Hg38.gawk.log" % (config['dirs']['logs'], config['stepnames']['exome_coverage'])
+    benchmark:
+        "{prefix}%s%s/{sample}.Hg38.benchmark" % (config['dirs']['benchmarks'], config['stepnames']['exome_coverage'])
+    conda:
+        "envs/spike_bedtools.yaml"
+    threads:
+        1
+    shell:
+        'echo "#coverage\tnumber_bases\ttotal_bases\tpercent_cumulative" > {output} && '
+        'bedtools'
+        ' coverage'
+        ' -abam {input.bam}'
+        ' -b {input.exometrack}'
+        ' -hist'
+        ' 2> {log.bedtools}'
+        ' | gawk \'BEGIN {{ FS="\t";OFS="\t"}} $1~"^all" {{print $2,$3,$4,(($4-sum)/($4+1)*100); sum+=$3}}\''
+        ' >> {output}'
+        " 2> {log.gawk}"
+        # 	-exome_coverage.sh $@ $(EXOME_TRACK)
+
+rule check_coverage:
+    input:
+        lambda wildcards: ["%s%s%s/%s.Hg38.exome_coverage.csv" % (wildcards.prefix, config['dirs']['intermediate'], config['stepnames']['exome_coverage'], sample['sample'])
+                           for sample in get_samples(SAMPLESHEETS, config)
+                           if sample['Sample_Project'] == wildcards.project]
+    output:
+        "{prefix}%s%s/{project}.Hg38.exome_coverage.pdf" % (config['dirs']['intermediate'], config['stepnames']['exome_coverage'])
+    log:
+        "{prefix}%s%s/{project}.Hg38.log" % (config['dirs']['logs'], config['stepnames']['check_coverage'])
+    benchmark:
+        "{prefix}%s%s/{project}.Hg38.benchmark" % (config['dirs']['benchmarks'], config['stepnames']['check_coverage'])
+    run:
+        report_exome_coverage(input, output[0], min_coverage=get_min_coverage(wildcards.project, config))
+

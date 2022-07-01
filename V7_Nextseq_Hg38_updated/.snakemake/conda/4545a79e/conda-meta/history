@@ -1,0 +1,5 @@
+==> 2022-06-03 11:20:38 <==
+# cmd: /home/joj02hit/miniconda3/bin/conda-env create --file /gpfs/project/joj02hit/V7_Nextseq_Hg38/.snakemake/conda/4545a79e.yaml --prefix /gpfs/project/joj02hit/V7_Nextseq_Hg38/.snakemake/conda/4545a79e
+# conda version: 4.12.0
++http://conda.repo.test.hhu.de/bioconda/linux-64::wkhtmltopdf-0.12.3-0
+# update specs: ['wkhtmltopdf']

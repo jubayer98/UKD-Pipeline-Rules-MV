@@ -1,0 +1,54 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	xenograft_check
+	check_coverage
+
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cluster nodes: 50
+Job counts:
+	count	jobs
+	9	MBC_remove_duplicates
+	9	add_UMI_R1
+	9	add_UMI_R3
+	9	bwa
+	9	gatk4_ApplyBQSR
+	9	gatk4_BaseRecalibrator
+	9	intersect
+	1	join_demultiplex
+	9	qualimap
+	27	rejoin_sample
+	9	sam_cleanup
+	9	samtools_index
+	9	samtools_index_sort
+	9	trim
+	136
+
+[Wed Jun 29 14:19:02 2022]
+rule join_demultiplex:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220622_NB552271_0095_AHWG7LBGXL/part_1, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220622_NB552271_0095_AHWG7LBGXL/part_2, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220622_NB552271_0095_AHWG7LBGXL/part_3, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220622_NB552271_0095_AHWG7LBGXL/part_4
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220622_NB552271_0095_AHWG7LBGXL
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/026_join_demultiplex/220622_NB552271_0095_AHWG7LBGXL.log
+    jobid: 135
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/026_join_demultiplex/220622_NB552271_0095_AHWG7LBGXL.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220622_NB552271_0095_AHWG7LBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, run=220622_NB552271_0095_AHWG7LBGXL
+
+mkdir -p /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220622_NB552271_0095_AHWG7LBGXL -v 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/026_join_demultiplex/220622_NB552271_0095_AHWG7LBGXL.log 1>&2 && for inp in `echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220622_NB552271_0095_AHWG7LBGXL/part_1 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220622_NB552271_0095_AHWG7LBGXL/part_2 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220622_NB552271_0095_AHWG7LBGXL/part_3 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220622_NB552271_0095_AHWG7LBGXL/part_4"`; do     for d in `find $inp -maxdepth 1 -mindepth 1 -type d ! -path '*Stats' ! -path '*Reports'`; do        cp -l -r -v $d /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220622_NB552271_0095_AHWG7LBGXL 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/026_join_demultiplex/220622_NB552271_0095_AHWG7LBGXL.log 1>&2;    done; done && for f in `find /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220622_NB552271_0095_AHWG7LBGXL/ -name "*.fastq.gz"`; do     fnoS=`echo "$f" | sed -r "s/_S[0-9]+_/_/"`; mv -v $f $fnoS 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/026_join_demultiplex/220622_NB552271_0095_AHWG7LBGXL.log 1>&2;  done
+Submitted job 135 with external jobid '3617035.hpc-batch'.
+[Wed Jun 29 14:19:12 2022]
+Error in rule join_demultiplex:
+    jobid: 135
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220622_NB552271_0095_AHWG7LBGXL
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/026_join_demultiplex/220622_NB552271_0095_AHWG7LBGXL.log (check log file(s) for error message)
+    shell:
+        mkdir -p /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220622_NB552271_0095_AHWG7LBGXL -v 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/026_join_demultiplex/220622_NB552271_0095_AHWG7LBGXL.log 1>&2 && for inp in `echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220622_NB552271_0095_AHWG7LBGXL/part_1 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220622_NB552271_0095_AHWG7LBGXL/part_2 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220622_NB552271_0095_AHWG7LBGXL/part_3 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220622_NB552271_0095_AHWG7LBGXL/part_4"`; do     for d in `find $inp -maxdepth 1 -mindepth 1 -type d ! -path '*Stats' ! -path '*Reports'`; do        cp -l -r -v $d /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220622_NB552271_0095_AHWG7LBGXL 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/026_join_demultiplex/220622_NB552271_0095_AHWG7LBGXL.log 1>&2;    done; done && for f in `find /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220622_NB552271_0095_AHWG7LBGXL/ -name "*.fastq.gz"`; do     fnoS=`echo "$f" | sed -r "s/_S[0-9]+_/_/"`; mv -v $f $fnoS 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/026_join_demultiplex/220622_NB552271_0095_AHWG7LBGXL.log 1>&2;  done
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: 3617035.hpc-batch
+
+Error executing rule join_demultiplex on cluster (jobid: 135, external: 3617035.hpc-batch, jobscript: /gpfs/project/joj02hit/V7_Nextseq_Hg38/.snakemake/tmp.tahcbbpl/snakejob.join_demultiplex.135.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+Exiting because a job execution failed. Look above for error message
+Complete log: /gpfs/project/joj02hit/V7_Nextseq_Hg38/.snakemake/log/2022-06-29T141843.973476.snakemake.log

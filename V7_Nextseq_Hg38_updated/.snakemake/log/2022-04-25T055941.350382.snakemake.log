@@ -1,0 +1,9 @@
+KeyboardInterrupt in line 22 of /home/yasinl/V7_Nextseq_Hg38/Snakefile.
+  File "/home/yasinl/V7_Nextseq_Hg38/Snakefile", line 22, in <module>
+  File "/home/yasinl/V7_Nextseq_Hg38/scripts/parse_samplesheet.py", line 245, in get_global_samplesheets
+  File "/home/yasinl/V7_Nextseq_Hg38/scripts/parse_samplesheet.py", line 32, in parse_samplesheet
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/frame.py", line 4584, in dropna
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/frame.py", line 7340, in count
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/generic.py", line 5682, in astype
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/dtypes/common.py", line 1749, in is_extension_array_dtype
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/dtypes/dtypes.py", line 89, in find

@@ -1,0 +1,13 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	check_coverage
+	xenograft_check
+
+Building DAG of jobs...
+InputFunctionException in line 94 of /gpfs/project/joj02hit/V7_Nextseq_Hg38/rules/demultiplex/Snakefile:
+FileNotFoundError: [Errno 2] No such file or directory: '/gpfs/project/projects/spike/AG_Borkhardt/Inputs/SampleSheetsTemp/220622_NB552271_0095_AHWG7LBGXL_spike.csv'
+Wildcards:
+prefix=/gpfs/project/projects/spike/AG_Borkhardt/
+run=220622_NB552271_0095_AHWG7LBGXL

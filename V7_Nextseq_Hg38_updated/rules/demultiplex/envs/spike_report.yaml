@@ -1,0 +1,5 @@
+channels:
+  - nodefaults
+  - http://conda.repo.test.hhu.de/bioconda
+dependencies:
+  - wkhtmltopdf 

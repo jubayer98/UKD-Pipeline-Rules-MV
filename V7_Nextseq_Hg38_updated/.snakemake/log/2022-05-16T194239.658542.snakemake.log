@@ -1,0 +1,107 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	check_coverage
+	xenograft_check
+
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cluster nodes: 50
+Job counts:
+	count	jobs
+	9	MBC_remove_duplicates
+	9	add_UMI_R1
+	9	add_UMI_R3
+	9	bwa
+	4	demultiplex
+	9	gatk4_ApplyBQSR
+	9	gatk4_BaseRecalibrator
+	9	intersect
+	1	join_demultiplex
+	9	qualimap
+	27	rejoin_sample
+	9	sam_cleanup
+	9	samtools_index
+	9	samtools_index_sort
+	9	trim
+	140
+
+[Mon May 16 19:43:03 2022]
+rule demultiplex:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL, /gpfs/project/projects/spike/AG_Borkhardt/Inputs/Raw_Illumina/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_1
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL_part_1.log
+    jobid: 136
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL_part_1.benchmark
+    reason: Updated input files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, run=220425_NB552271_0084_AHLJWWBGXL, part=part_1
+    threads: 8
+
+module load bcl2fastq/2.20.0 && rowdata=`grep "^\[Data\]$" -n /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL/samplesheet_part_1.csv | cut -d ":" -f 1` && num_colliding=`tail -n+$rowdata /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL/samplesheet_part_1.csv | grep "colliding barcode" -c; true` && bcl2fastq --runfolder-dir /gpfs/project/projects/spike/AG_Borkhardt/Inputs/Raw_Illumina/220425_NB552271_0084_AHLJWWBGXL/ --output-dir /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_1/ --ignore-missing-bcls --mask-short-adapter-reads 0  --use-bases-mask Y150,I8,Y10,Y150  --sample-sheet /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL/samplesheet_part_1.csv --loading-threads 8 --processing-threads 8 --writing-threads 8 `if [ "$num_colliding" -ge 1 ]; then echo " --barcode-mismatches 0 "; fi` 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL_part_1.log 1>&2
+Submitted job 136 with external jobid '3460824.hpc-batch'.
+
+[Mon May 16 19:43:03 2022]
+rule demultiplex:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL, /gpfs/project/projects/spike/AG_Borkhardt/Inputs/Raw_Illumina/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_3
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL_part_3.log
+    jobid: 138
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL_part_3.benchmark
+    reason: Updated input files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, run=220425_NB552271_0084_AHLJWWBGXL, part=part_3
+    threads: 8
+
+module load bcl2fastq/2.20.0 && rowdata=`grep "^\[Data\]$" -n /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL/samplesheet_part_3.csv | cut -d ":" -f 1` && num_colliding=`tail -n+$rowdata /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL/samplesheet_part_3.csv | grep "colliding barcode" -c; true` && bcl2fastq --runfolder-dir /gpfs/project/projects/spike/AG_Borkhardt/Inputs/Raw_Illumina/220425_NB552271_0084_AHLJWWBGXL/ --output-dir /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_3/ --ignore-missing-bcls --mask-short-adapter-reads 0  --use-bases-mask Y150,I8,Y10,Y150  --sample-sheet /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL/samplesheet_part_3.csv --loading-threads 8 --processing-threads 8 --writing-threads 8 `if [ "$num_colliding" -ge 1 ]; then echo " --barcode-mismatches 0 "; fi` 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL_part_3.log 1>&2
+Submitted job 138 with external jobid '3460825.hpc-batch'.
+
+[Mon May 16 19:43:04 2022]
+rule demultiplex:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL, /gpfs/project/projects/spike/AG_Borkhardt/Inputs/Raw_Illumina/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_4
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL_part_4.log
+    jobid: 139
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL_part_4.benchmark
+    reason: Updated input files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, run=220425_NB552271_0084_AHLJWWBGXL, part=part_4
+    threads: 8
+
+module load bcl2fastq/2.20.0 && rowdata=`grep "^\[Data\]$" -n /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL/samplesheet_part_4.csv | cut -d ":" -f 1` && num_colliding=`tail -n+$rowdata /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL/samplesheet_part_4.csv | grep "colliding barcode" -c; true` && bcl2fastq --runfolder-dir /gpfs/project/projects/spike/AG_Borkhardt/Inputs/Raw_Illumina/220425_NB552271_0084_AHLJWWBGXL/ --output-dir /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_4/ --ignore-missing-bcls --mask-short-adapter-reads 0  --use-bases-mask Y150,I8,Y10,Y150  --sample-sheet /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL/samplesheet_part_4.csv --loading-threads 8 --processing-threads 8 --writing-threads 8 `if [ "$num_colliding" -ge 1 ]; then echo " --barcode-mismatches 0 "; fi` 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL_part_4.log 1>&2
+Submitted job 139 with external jobid '3460826.hpc-batch'.
+
+[Mon May 16 19:43:04 2022]
+rule demultiplex:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL, /gpfs/project/projects/spike/AG_Borkhardt/Inputs/Raw_Illumina/220425_NB552271_0084_AHLJWWBGXL
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_2
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL_part_2.log
+    jobid: 137
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL_part_2.benchmark
+    reason: Updated input files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, run=220425_NB552271_0084_AHLJWWBGXL, part=part_2
+    threads: 8
+
+module load bcl2fastq/2.20.0 && rowdata=`grep "^\[Data\]$" -n /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL/samplesheet_part_2.csv | cut -d ":" -f 1` && num_colliding=`tail -n+$rowdata /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL/samplesheet_part_2.csv | grep "colliding barcode" -c; true` && bcl2fastq --runfolder-dir /gpfs/project/projects/spike/AG_Borkhardt/Inputs/Raw_Illumina/220425_NB552271_0084_AHLJWWBGXL/ --output-dir /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_2/ --ignore-missing-bcls --mask-short-adapter-reads 0  --use-bases-mask Y150,I8,Y10,Y150  --sample-sheet /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL/samplesheet_part_2.csv --loading-threads 8 --processing-threads 8 --writing-threads 8 `if [ "$num_colliding" -ge 1 ]; then echo " --barcode-mismatches 0 "; fi` 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL_part_2.log 1>&2
+Submitted job 137 with external jobid '3460827.hpc-batch'.
+[Mon May 16 20:04:23 2022]
+Finished job 139.
+1 of 140 steps (0.71%) done
+[Mon May 16 20:05:00 2022]
+Finished job 137.
+2 of 140 steps (1%) done
+[Mon May 16 20:05:40 2022]
+Finished job 136.
+3 of 140 steps (2%) done
+[Mon May 16 20:06:52 2022]
+Error in rule demultiplex:
+    jobid: 138
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_3
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL_part_3.log (check log file(s) for error message)
+    shell:
+        module load bcl2fastq/2.20.0 && rowdata=`grep "^\[Data\]$" -n /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL/samplesheet_part_3.csv | cut -d ":" -f 1` && num_colliding=`tail -n+$rowdata /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL/samplesheet_part_3.csv | grep "colliding barcode" -c; true` && bcl2fastq --runfolder-dir /gpfs/project/projects/spike/AG_Borkhardt/Inputs/Raw_Illumina/220425_NB552271_0084_AHLJWWBGXL/ --output-dir /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_3/ --ignore-missing-bcls --mask-short-adapter-reads 0  --use-bases-mask Y150,I8,Y10,Y150  --sample-sheet /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/024_split_demultiplex/220425_NB552271_0084_AHLJWWBGXL/samplesheet_part_3.csv --loading-threads 8 --processing-threads 8 --writing-threads 8 `if [ "$num_colliding" -ge 1 ]; then echo " --barcode-mismatches 0 "; fi` 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL_part_3.log 1>&2
+        (exited with non-zero exit code)
+    cluster_jobid: 3460825.hpc-batch
+
+Error executing rule demultiplex on cluster (jobid: 138, external: 3460825.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.jov025il/snakejob.demultiplex.138.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/yasinl/V7_Nextseq_Hg38/.snakemake/log/2022-05-16T194239.658542.snakemake.log

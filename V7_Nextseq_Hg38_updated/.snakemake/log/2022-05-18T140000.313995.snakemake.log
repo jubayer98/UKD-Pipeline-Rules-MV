@@ -1,0 +1,36 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	xenograft_check
+	check_coverage
+
+Building DAG of jobs...
+Creating conda environment rules/gatk/envs/spike_qualimap.yaml...
+Downloading remote packages.
+CreateCondaEnvironmentException:
+Could not create conda environment from /home/yasinl/V7_Nextseq_Hg38/rules/gatk/envs/spike_qualimap.yaml:
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... Finding conflicts:   0%|          | 0/2 [00:00<?, ?it/s]Examining openjdk:   0%|          | 0/2 [00:00<?, ?it/s]Examining __glibc:  50%|█████     | 1/2 [00:00<00:00, 12748.64it/s]                                                                   
+Found conflicts! Looking for incompatible packages.
+This can take several minutes.  Press CTRL-C to abort.
+failed
+
+UnsatisfiableError: The following specifications were found to be incompatible with each other:
+
+
+
+Package bioconductor-noiseq conflicts for:
+qualimap=2.1.1 -> bioconductor-noiseq
+Package openjdk conflicts for:
+qualimap=2.1.1 -> openjdk
+Package bioconductor-rsamtools conflicts for:
+qualimap=2.1.1 -> bioconductor-rsamtools
+Package bioconductor-rtracklayer conflicts for:
+qualimap=2.1.1 -> bioconductor-rtracklayer
+Package r-xml conflicts for:
+qualimap=2.1.1 -> r-xml
+Package r-optparse conflicts for:
+qualimap=2.1.1 -> r-optparse
+
+

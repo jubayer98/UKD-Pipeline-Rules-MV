@@ -1,0 +1,17 @@
+KeyboardInterrupt in line 22 of /home/yasinl/V7_Nextseq_Hg38/Snakefile.
+  File "/home/yasinl/V7_Nextseq_Hg38/Snakefile", line 22, in <module>
+  File "/home/yasinl/V7_Nextseq_Hg38/scripts/parse_samplesheet.py", line 245, in get_global_samplesheets
+  File "/home/yasinl/V7_Nextseq_Hg38/scripts/parse_samplesheet.py", line 42, in parse_samplesheet
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/indexing.py", line 189, in __setitem__
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/indexing.py", line 167, in _get_setitem_indexer
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/indexing.py", line 248, in _convert_tuple
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/indexing.py", line 1354, in _convert_to_indexer
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/indexing.py", line 1155, in _get_listlike_indexer
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/indexes/base.py", line 3128, in reindex
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/indexes/range.py", line 344, in equals
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/indexes/base.py", line 4067, in equals
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/dtypes/missing.py", line 428, in array_equivalent
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/dtypes/common.py", line 1375, in is_datetimelike_v_numeric
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/dtypes/common.py", line 1468, in needs_i8_conversion
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/dtypes/common.py", line 469, in is_datetime64tz_dtype
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/dtypes/base.py", line 101, in is_dtype

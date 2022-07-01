@@ -1,0 +1,10 @@
+==> 2022-06-27 16:09:16 <==
+# cmd: /home/joj02hit/miniconda3/bin/conda-env create --file /gpfs/project/joj02hit/V7_Nextseq_Hg38/.snakemake/conda/45165721.yaml --prefix /gpfs/project/joj02hit/V7_Nextseq_Hg38/.snakemake/conda/45165721
+# conda version: 4.12.0
++http://conda.repo.test.hhu.de/anaconda/linux-64::_libgcc_mutex-0.1-main
++http://conda.repo.test.hhu.de/anaconda/linux-64::_openmp_mutex-4.5-1_gnu
++http://conda.repo.test.hhu.de/anaconda/linux-64::libgcc-ng-9.3.0-h5101ec6_17
++http://conda.repo.test.hhu.de/anaconda/linux-64::libgomp-9.3.0-h5101ec6_17
++http://conda.repo.test.hhu.de/anaconda/linux-64::pigz-2.4-h84994c4_0
++http://conda.repo.test.hhu.de/anaconda/linux-64::zlib-1.2.12-h7f8727e_2
+# update specs: ['pigz=2.4']

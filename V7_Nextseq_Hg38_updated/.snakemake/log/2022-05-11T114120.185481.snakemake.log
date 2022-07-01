@@ -1,0 +1,28 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	xenograft_check
+	check_coverage
+
+Building DAG of jobs...
+Creating conda environment rules/trim/envs/spike_trim.yaml...
+Downloading remote packages.
+CreateCondaEnvironmentException:
+Could not create conda environment from /home/yasinl/V7_Nextseq_Hg38/rules/trim/envs/spike_trim.yaml:
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... Finding conflicts:   0%|          | 0/1 [00:00<?, ?it/s]Examining __glibc:   0%|          | 0/1 [00:00<?, ?it/s]                                                        
+Found conflicts! Looking for incompatible packages.
+This can take several minutes.  Press CTRL-C to abort.
+failed
+
+UnsatisfiableError: The following specifications were found to be incompatible with each other:
+
+
+
+Package openjdk conflicts for:
+trimmomatic=0.39 -> openjdk
+Package python conflicts for:
+trimmomatic=0.39 -> python
+
+

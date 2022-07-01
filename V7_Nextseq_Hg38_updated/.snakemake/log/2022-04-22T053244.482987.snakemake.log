@@ -1,0 +1,11 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	check_coverage
+	xenograft_check
+
+Building DAG of jobs...
+MissingInputException in line 1 of /home/yasinl/Deya/rules/demultiplex/Snakefile:
+Missing input files for rule check_complete:
+/gpfs/project/projects/spike/AG_Borkhardt/Inputs/Raw_Illumina/180713_SN737_0440_ACC6NPACXX/RTAComplete.txt

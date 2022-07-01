@@ -1,0 +1,9 @@
+channels:
+  - nodefaults
+  - http://conda.repo.test.hhu.de/bioconda
+  - http://conda.repo.test.hhu.de/anaconda
+dependencies:
+  - bwa =0.7.8
+  - libgcc-ng=7.5.0
+#  - samtools =1.11
+#  - picard =2.23.8 #2.18.7

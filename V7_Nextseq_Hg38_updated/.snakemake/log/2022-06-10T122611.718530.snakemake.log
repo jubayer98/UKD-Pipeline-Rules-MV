@@ -1,0 +1,45 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	xenograft_check
+	check_coverage
+
+Building DAG of jobs...
+Conda environment rules/trim/envs/spike_trim.yaml will be created.
+Conda environment rules/gatk/envs/spike_qualimap.yaml will be created.
+Conda environment rules/rejoin_samples/envs/spike_rejoin.yaml will be created.
+Conda environment rules/map/envs/spike_map.yaml will be created.
+Conda environment rules/gatk/envs/spike_gatk.yaml will be created.
+Job counts:
+	count	jobs
+	1	MBC_remove_duplicates
+	1	add_UMI_R1
+	1	add_UMI_R3
+	1	bwa
+	1	gatk4_ApplyBQSR
+	1	gatk4_BaseRecalibrator
+	1	intersect
+	1	join_demultiplex
+	1	qualimap
+	3	rejoin_sample
+	1	sam_cleanup
+	1	samtools_index
+	1	samtools_index_sort
+	1	trim
+	16
+
+[Fri Jun 10 12:26:28 2022]
+rule join_demultiplex:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_1, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_2, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_3, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_4
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL.log
+    jobid: 15
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL.benchmark
+    reason: Forced execution
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, run=220425_NB552271_0084_AHLJWWBGXL
+
+mkdir -p /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL -v 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL.log 1>&2 && for inp in `echo "/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_1 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_2 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_3 /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220425_NB552271_0084_AHLJWWBGXL/part_4"`; do     for d in `find $inp -maxdepth 1 -mindepth 1 -type d ! -path '*Stats' ! -path '*Reports'`; do        cp -l -r -v $d /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL.log 1>&2;    done; done && for f in `find /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL/ -name "*.fastq.gz"`; do     fnoS=`echo "$f" | sed -r "s/_S[0-9]+_/_/"`; mv -v $f $fnoS 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/026_join_demultiplex/220425_NB552271_0084_AHLJWWBGXL.log 1>&2;  done
+ProtectedOutputException in line 5 of /gpfs/project/joj02hit/V7_Nextseq_Hg38/rules/rejoin_samples/Snakefile:
+Write-protected output files for rule rejoin_sample:
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1.fastq.gz

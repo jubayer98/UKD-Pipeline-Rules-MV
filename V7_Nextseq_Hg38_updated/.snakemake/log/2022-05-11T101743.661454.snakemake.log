@@ -1,0 +1,52 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	xenograft_check
+	check_coverage
+
+Building DAG of jobs...
+MissingInputException in line 80 of /home/yasinl/V7_Nextseq_Hg38/Snakefile:
+Missing input files for rule all:
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/505_snupy_extractsamples/hhu/Keimbahn/KB0466.background.extracted
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/090_exome_coverage/Keimbahn/KB0472_f.exome_coverage.csv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/091_bamstat/Keimbahn/KB0476_f.bamstat.tsv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/092_genepanel_coverage/Triantafyllia_Brozou.yaml/Keimbahn/KB0315_c.tsv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/121_biom_gatkbackground/Keimbahn/KB0476_m.gatk.snp_indel.biom
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/090_exome_coverage/Keimbahn/KB0315_m.exome_coverage.csv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/121_biom_gatkbackground/Keimbahn/KB0479_f.gatk.snp_indel.biom
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/505_snupy_extractsamples/hhu/Keimbahn/KB0473.background.extracted
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/090_exome_coverage/Keimbahn/KB0479_f.exome_coverage.csv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/091_bamstat/Keimbahn/KB0472_f.bamstat.tsv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/505_snupy_extractsamples/hhu/Keimbahn/KB0502.trio.extracted
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/092_genepanel_coverage/Triantafyllia_Brozou.yaml/Keimbahn/KB0479_f.tsv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/090_exome_coverage/Keimbahn/KB0315_c.exome_coverage.csv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/092_genepanel_coverage/Triantafyllia_Brozou.yaml/Keimbahn/KB0315_m.tsv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/092_genepanel_coverage/Triantafyllia_Brozou.yaml/Keimbahn/KB0472_f.tsv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/121_biom_gatkbackground/Keimbahn/KB0476_f.gatk.snp_indel.biom
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/091_bamstat/Keimbahn/KB0476_m.bamstat.tsv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/121_biom_gatkbackground/Keimbahn/KB0476_c.gatk.snp_indel.biom
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/092_genepanel_coverage/Triantafyllia_Brozou.yaml/Keimbahn/KB0476_c.tsv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/090_exome_coverage/Keimbahn/KB0472_m.exome_coverage.csv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/092_genepanel_coverage/Triantafyllia_Brozou.yaml/Keimbahn/KB0476_m.tsv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/121_biom_gatkbackground/Keimbahn/KB0472_m.gatk.snp_indel.biom
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/091_bamstat/Keimbahn/KB0315_m.bamstat.tsv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/121_biom_gatkbackground/Keimbahn/KB0472_f.gatk.snp_indel.biom
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/092_genepanel_coverage/Triantafyllia_Brozou.yaml/Keimbahn/KB0472_m.tsv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/092_genepanel_coverage/Triantafyllia_Brozou.yaml/Keimbahn/KB0472_c.tsv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/091_bamstat/Keimbahn/KB0472_m.bamstat.tsv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/091_bamstat/Keimbahn/KB0472_c.bamstat.tsv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/091_bamstat/Keimbahn/KB0476_c.bamstat.tsv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/121_biom_gatkbackground/Keimbahn/KB0315_m.gatk.snp_indel.biom
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/091_bamstat/Keimbahn/KB0315_c.bamstat.tsv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/092_genepanel_coverage/Triantafyllia_Brozou.yaml/Keimbahn/KB0476_f.tsv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/090_exome_coverage/Keimbahn/KB0476_f.exome_coverage.csv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/121_biom_gatkbackground/Keimbahn/KB0472_c.gatk.snp_indel.biom
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/505_snupy_extractsamples/hhu/Keimbahn/KB0465.background.extracted
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/505_snupy_extractsamples/hhu/Keimbahn/KB0473.trio.extracted
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/091_bamstat/Keimbahn/KB0479_f.bamstat.tsv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/090_exome_coverage/Keimbahn/KB0476_m.exome_coverage.csv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/121_biom_gatkbackground/Keimbahn/KB0315_c.gatk.snp_indel.biom
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/090_exome_coverage/Keimbahn/KB0476_c.exome_coverage.csv
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/505_snupy_extractsamples/hhu/Keimbahn/KB0502.background.extracted
+/gpfs/project/projects/spike/AG_Borkhardt/Intermediate/090_exome_coverage/Keimbahn/KB0472_c.exome_coverage.csv

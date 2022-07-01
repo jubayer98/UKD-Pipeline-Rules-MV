@@ -1,0 +1,8 @@
+KeyboardInterrupt in line 22 of /gpfs/project/joj02hit/V7_Nextseq_Hg38/Snakefile.
+  File "/gpfs/project/joj02hit/V7_Nextseq_Hg38/Snakefile", line 22, in <module>
+  File "/gpfs/project/joj02hit/V7_Nextseq_Hg38/scripts/parse_samplesheet.py", line 245, in get_global_samplesheets
+  File "/gpfs/project/joj02hit/V7_Nextseq_Hg38/scripts/parse_samplesheet.py", line 81, in parse_samplesheet
+  File "/software/python/3.6.5/ivybridge/lib/python3.6/site-packages/pandas/core/frame.py", line 3116, in __setitem__
+  File "/software/python/3.6.5/ivybridge/lib/python3.6/site-packages/pandas/core/frame.py", line 3191, in _set_item
+  File "/software/python/3.6.5/ivybridge/lib/python3.6/site-packages/pandas/core/frame.py", line 3407, in _sanitize_column
+  File "/software/python/3.6.5/ivybridge/lib/python3.6/site-packages/pandas/core/dtypes/cast.py", line 1166, in cast_scalar_to_array

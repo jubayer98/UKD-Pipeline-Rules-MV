@@ -1,0 +1,5 @@
+PermissionError in line 22 of /gpfs/project/joj02hit/V7_Nextseq_Hg38/Snakefile:
+[Errno 13] Permission denied: '/gpfs/project/projects/spike/AG_Borkhardt/Inputs/SampleSheets/220428_NB552271_0085_AHNWF2BGXL_spike.csv'
+  File "/gpfs/project/joj02hit/V7_Nextseq_Hg38/Snakefile", line 22, in <module>
+  File "/gpfs/project/joj02hit/V7_Nextseq_Hg38/scripts/parse_samplesheet.py", line 245, in get_global_samplesheets
+  File "/gpfs/project/joj02hit/V7_Nextseq_Hg38/scripts/parse_samplesheet.py", line 18, in parse_samplesheet

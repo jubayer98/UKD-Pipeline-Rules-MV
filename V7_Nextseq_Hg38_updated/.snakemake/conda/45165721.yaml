@@ -1,0 +1,17 @@
+channels:
+    - nodefaults
+    - http://conda.repo.test.hhu.de/anaconda
+    - http://conda.repo.test.hhu.de/conda-forge
+    - http://conda.repo.test.hhu.de/bioconda
+dependencies:
+  - pigz =2.4
+
+
+
+
+#channels:
+#  - nodefaults
+#  - http://conda.repo.test.hhu.de/anaconda
+#dependencies:
+#  - pigz =2.4
+#

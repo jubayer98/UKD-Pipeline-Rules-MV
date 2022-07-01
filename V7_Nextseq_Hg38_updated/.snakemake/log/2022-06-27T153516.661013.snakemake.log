@@ -1,0 +1,59 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	xenograft_check
+	check_coverage
+
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cluster nodes: 100
+Job counts:
+	count	jobs
+	1	convert_illumina_report
+	1	yield_report
+	2
+
+[Mon Jun 27 15:35:35 2022]
+localrule yield_report:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220622_NB552271_0095_AHWG7LBGXL/part_1, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220622_NB552271_0095_AHWG7LBGXL/part_2, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220622_NB552271_0095_AHWG7LBGXL/part_3, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220622_NB552271_0095_AHWG7LBGXL/part_4
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/027_yield_report/Reports/220622_NB552271_0095_AHWG7LBGXL.yield_report.html, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/027_yield_report/Data/220622_NB552271_0095_AHWG7LBGXL.yield_data.csv
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/027_yield_report/220622_NB552271_0095_AHWG7LBGXL.log
+    jobid: 1
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/027_yield_report/220622_NB552271_0095_AHWG7LBGXL.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/027_yield_report/Reports/220622_NB552271_0095_AHWG7LBGXL.yield_report.html
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, run=220622_NB552271_0095_AHWG7LBGXL
+
+[Mon Jun 27 15:35:56 2022]
+Finished job 1.
+1 of 2 steps (50%) done
+
+[Mon Jun 27 15:35:56 2022]
+localrule convert_illumina_report:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/027_yield_report/Reports/220622_NB552271_0095_AHWG7LBGXL.yield_report.html
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/030_convert_illumina_report/220622_NB552271_0095_AHWG7LBGXL.yield_report.pdf
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/030_convert_illumina_report/220622_NB552271_0095_AHWG7LBGXL.log
+    jobid: 0
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/030_convert_illumina_report/220622_NB552271_0095_AHWG7LBGXL.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/030_convert_illumina_report/220622_NB552271_0095_AHWG7LBGXL.yield_report.pdf; Input files updated by another job: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/027_yield_report/Reports/220622_NB552271_0095_AHWG7LBGXL.yield_report.html
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, run=220622_NB552271_0095_AHWG7LBGXL
+
+wkhtmltopdf --orientation Landscape /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/027_yield_report/Reports/220622_NB552271_0095_AHWG7LBGXL.yield_report.html /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/030_convert_illumina_report/220622_NB552271_0095_AHWG7LBGXL.yield_report.pdf 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/030_convert_illumina_report/220622_NB552271_0095_AHWG7LBGXL.log &&echo 'suggested recipients:
+Layal.Yasin@med.uni-duesseldorf.de
+stefan.m.janssen@gmail.com
+Alemazkour@med.uni-duesseldorf.de
+Frauke.Meyer@med.uni-duesseldorf.de
+Daniel.Scholtyssik@med.uni-duesseldorf.de
+
+Hi there,
+
+this is an automated message from spike.
+
+Demultiplexing for flowcell 220622_NB552271_0095_AHWG7LBGXL finished. Please find attached the yield report.
+
+Have a nice day!' | mail -s '[spike] demultiplex report 220622_NB552271_0095_AHWG7LBGXL' -A /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/030_convert_illumina_report/220622_NB552271_0095_AHWG7LBGXL.yield_report.pdf  deyazoubi@gmail.com 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/030_convert_illumina_report/220622_NB552271_0095_AHWG7LBGXL.log
+Activating conda environment: /gpfs/project/joj02hit/V7_Nextseq_Hg38/.snakemake/conda/4545a79e
+[Mon Jun 27 15:36:07 2022]
+Finished job 0.
+2 of 2 steps (100%) done
+Complete log: /gpfs/project/joj02hit/V7_Nextseq_Hg38/.snakemake/log/2022-06-27T153516.661013.snakemake.log

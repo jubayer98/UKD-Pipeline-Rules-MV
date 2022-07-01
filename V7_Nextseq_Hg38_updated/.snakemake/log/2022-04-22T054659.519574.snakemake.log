@@ -1,0 +1,47 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	xenograft_check
+	check_coverage
+
+Building DAG of jobs...
+Creating conda environment rules/demultiplex/envs/spike_report.yaml...
+Downloading remote packages.
+Environment for rules/demultiplex/envs/spike_report.yaml created (location: .snakemake/conda/7ffc80a6)
+Using shell: /usr/bin/bash
+Provided cluster nodes: 100
+Job counts:
+	count	jobs
+	1	convert_illumina_report
+	1
+
+[Fri Apr 22 05:47:38 2022]
+localrule convert_illumina_report:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/027_yield_report/Reports/220321_NB552271_0081_AHLHGHBGXL.yield_report.html
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/030_convert_illumina_report/220321_NB552271_0081_AHLHGHBGXL.yield_report.pdf
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/030_convert_illumina_report/220321_NB552271_0081_AHLHGHBGXL.log
+    jobid: 0
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/030_convert_illumina_report/220321_NB552271_0081_AHLHGHBGXL.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/030_convert_illumina_report/220321_NB552271_0081_AHLHGHBGXL.yield_report.pdf
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, run=220321_NB552271_0081_AHLHGHBGXL
+
+wkhtmltopdf --orientation Landscape /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/027_yield_report/Reports/220321_NB552271_0081_AHLHGHBGXL.yield_report.html /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/030_convert_illumina_report/220321_NB552271_0081_AHLHGHBGXL.yield_report.pdf 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/030_convert_illumina_report/220321_NB552271_0081_AHLHGHBGXL.log &&echo 'suggested recipients:
+Layal.Yasin@med.uni-duesseldorf.de
+stefan.m.janssen@gmail.com
+Alemazkour@med.uni-duesseldorf.de
+Frauke.Meyer@med.uni-duesseldorf.de
+Daniel.Scholtyssik@med.uni-duesseldorf.de
+
+Hi there,
+
+this is an automated message from spike.
+
+Demultiplexing for flowcell 220321_NB552271_0081_AHLHGHBGXL finished. Please find attached the yield report.
+
+Have a nice day!' | mail -s '[spike] demultiplex report 220321_NB552271_0081_AHLHGHBGXL' -A /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/030_convert_illumina_report/220321_NB552271_0081_AHLHGHBGXL.yield_report.pdf  deyazoubi@gmail.com 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/030_convert_illumina_report/220321_NB552271_0081_AHLHGHBGXL.log
+Activating conda environment: /home/yasinl/Deya/.snakemake/conda/7ffc80a6
+[Fri Apr 22 05:47:43 2022]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /home/yasinl/Deya/.snakemake/log/2022-04-22T054659.519574.snakemake.log

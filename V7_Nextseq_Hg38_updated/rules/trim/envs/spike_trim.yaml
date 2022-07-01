@@ -1,0 +1,18 @@
+channels:
+    - nodefaults
+    - http://conda.repo.test.hhu.de/bioconda
+    - http://conda.repo.test.hhu.de/conda-forge
+dependencies:
+  - trimmomatic =0.33=1
+
+
+
+#channels:
+#    - nodefaults
+#    - http://conda.repo.test.hhu.de/bioconda
+#    - http://conda.repo.test.hhu.de/main
+#    - http://conda.repo.test.hhu.de/conda-forge
+#dependencies:
+#    - openjdk =11
+#    - trimmomatic =0.39
+#

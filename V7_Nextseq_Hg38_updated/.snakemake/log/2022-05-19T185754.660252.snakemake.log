@@ -1,0 +1,44 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	check_coverage
+	xenograft_check
+
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cluster nodes: 50
+Job counts:
+	count	jobs
+	1	gatk4_ApplyBQSR
+	1	qualimap
+	2
+
+[Thu May 19 18:58:16 2022]
+rule gatk4_ApplyBQSR:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.dict, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.amb, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.ann, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.bwt, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.fai, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.pac, /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta.sa, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/081_gatk4_BaseRecalibrator/Hg38/Keimbahn/KB0476_f.GATK4.Hg38.reCal.target.UMI.nodup.srt.table, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_f.UMI.target.nodup.srt.bam
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_f.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_f.log
+    jobid: 17
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_f.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_f.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_f
+    threads: 16
+
+gatk --java-options -Xmx16g ApplyBQSR -I /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_f.UMI.target.nodup.srt.bam -R /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta --bqsr-recal-file /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/081_gatk4_BaseRecalibrator/Hg38/Keimbahn/KB0476_f.GATK4.Hg38.reCal.target.UMI.nodup.srt.table -O /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_f.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_f.log 1>&2
+Submitted job 17 with external jobid '3472081.hpc-batch'.
+[Fri May 20 09:27:19 2022]
+Error in rule gatk4_ApplyBQSR:
+    jobid: 17
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_f.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_f.log (check log file(s) for error message)
+    conda-env: /home/yasinl/V7_Nextseq_Hg38/.snakemake/conda/3f0c8a64
+    shell:
+        gatk --java-options -Xmx16g ApplyBQSR -I /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/066_MBC_remove_duplicates/Hg38/Keimbahn/KB0476_f.UMI.target.nodup.srt.bam -R /gpfs/project/projects/spike/AG_Borkhardt/References/Homo_sapiens.GRCh38.dna.chromosome.all.fasta --bqsr-recal-file /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/081_gatk4_BaseRecalibrator/Hg38/Keimbahn/KB0476_f.GATK4.Hg38.reCal.target.UMI.nodup.srt.table -O /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_f.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam 2>> /gpfs/project/projects/spike/AG_Borkhardt/Logs/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_f.log 1>&2
+        (exited with non-zero exit code)
+    cluster_jobid: 3472081.hpc-batch
+
+Error executing rule gatk4_ApplyBQSR on cluster (jobid: 17, external: 3472081.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp._jyrv1as/snakejob.gatk4_ApplyBQSR.17.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/yasinl/V7_Nextseq_Hg38/.snakemake/log/2022-05-19T185754.660252.snakemake.log

@@ -1,0 +1,10 @@
+name: spike_gatk
+
+channels:
+  - nodefaults
+  - http://conda.repo.test.hhu.de/bioconda
+  - http://conda.repo.test.hhu.de/conda-forge
+  #- defaults
+dependencies:
+  - gatk4 =4.2.5.0
+  #- libarchive =3.4.3

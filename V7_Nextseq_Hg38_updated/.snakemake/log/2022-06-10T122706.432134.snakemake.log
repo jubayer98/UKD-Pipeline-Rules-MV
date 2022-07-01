@@ -1,0 +1,17 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	check_coverage
+	xenograft_check
+
+Building DAG of jobs...
+Creating conda environment rules/gatk/envs/spike_qualimap.yaml...
+Downloading and installing remote packages.
+Environment for rules/gatk/envs/spike_qualimap.yaml created (location: .snakemake/conda/d631500a)
+Using shell: /usr/bin/bash
+Provided cluster nodes: 50
+Job counts:
+	count	jobs
+	1	qualimap
+	1

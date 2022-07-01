@@ -1,0 +1,7 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+TokenError in line 67 of /home/yasinl/V7_Nextseq_Hg38/Snakefile:
+('EOF in multi-line string', (155, 0))
+  File "/home/yasinl/V7_Nextseq_Hg38/Snakefile", line 67, in <module>
+  File "/home/yasinl/miniconda3/lib/python3.7/tokenize.py", line 519, in _tokenize

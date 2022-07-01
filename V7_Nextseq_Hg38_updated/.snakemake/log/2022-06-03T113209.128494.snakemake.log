@@ -1,0 +1,28 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	xenograft_check
+	check_coverage
+
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 100
+Job counts:
+	count	jobs
+	1	convert_illumina_report
+	1	yield_report
+	2
+
+[Fri Jun  3 11:32:25 2022]
+localrule yield_report:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220505_NB552271_0086_AHNVTFBGXL/part_1, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220505_NB552271_0086_AHNVTFBGXL/part_2, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220505_NB552271_0086_AHNVTFBGXL/part_3, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/025_demultiplex/220505_NB552271_0086_AHNVTFBGXL/part_4
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/027_yield_report/Reports/220505_NB552271_0086_AHNVTFBGXL.yield_report.html, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/027_yield_report/Data/220505_NB552271_0086_AHNVTFBGXL.yield_data.csv
+    jobid: 1
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/027_yield_report/220505_NB552271_0086_AHNVTFBGXL.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/027_yield_report/Reports/220505_NB552271_0086_AHNVTFBGXL.yield_report.html
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, run=220505_NB552271_0086_AHNVTFBGXL
+
+Job failed, going on with independent jobs.
+Exiting because a job execution failed. Look above for error message
+Complete log: /gpfs/project/joj02hit/V7_Nextseq_Hg38/.snakemake/log/2022-06-03T113209.128494.snakemake.log

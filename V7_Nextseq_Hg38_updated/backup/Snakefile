@@ -1,0 +1,124 @@
+rule backup_compress:
+    # Realign the the reads
+    input:
+        "{prefix}%s%s/{run}.complete.txt" % (config['dirs']['intermediate'], config['stepnames']['check_complete']),
+        dir="{prefix}%s%s{run}" % (config['dirs']['inputs'], config['dirs']['rawillumina'])
+    output:
+        "{prefix}%s%s/{run}.7z" % (config['dirs']['intermediate'], config['stepnames']['backup_compress'])
+    log:
+        "{prefix}%s%s/{run}.log" % (config['dirs']['logs'], config['stepnames']['backup_compress'])
+    benchmark:
+        "{prefix}%s%s/{run}.benchmark" % (config['dirs']['benchmarks'], config['stepnames']['backup_compress'])
+    conda:
+        "envs/spike_backup.yaml"
+    threads:
+        12
+    shell:
+        "7za"
+        " a"
+        " -bd"
+        " -y"
+        " -mx3"
+        " -m0=bzip2"
+        " -mmt={threads}"
+        " {output}"
+        " {input.dir}"
+        " 2> {log}"
+        " 1>&2"
+
+        # 7za a -bd -y -mx3 -m0=bzip2 -mmt=12 $RUNNAME.7z $RUNNAME -xr@$EXCLUDE || (echo "### $(date +"%d.%m.%Y %H:%M:%S") ### Compression failed!"| tee -a $LOGFILE; error ${LINENO}; exit 1)
+
+
+rule backup_transfer:
+    # Realign the the reads
+    input:
+        "{prefix}%s%s/{run}.7z" % (config['dirs']['intermediate'], config['stepnames']['backup_compress'])
+    output:
+        "{prefix}%s%s/{run}.done" % (config['dirs']['intermediate'], config['stepnames']['backup_transfer'])
+    log:
+        "{prefix}%s%s/{run}.log" % (config['dirs']['logs'], config['stepnames']['backup_transfer'])
+    benchmark:
+        "{prefix}%s%s/{run}.benchmark" % (config['dirs']['benchmarks'], config['stepnames']['backup_transfer'])
+    threads:
+        1
+    shell:
+        "tmpfile=$(mktemp) &&"
+        ' echo "quote USER {config[credentials][backup][username]}" > $tmpfile &&'
+        ' echo "quote PASS {config[credentials][backup][password]}" >> $tmpfile &&'
+        ' echo "cd {config[credentials][backup][targetdirectory]}" >> $tmpfile &&'
+        ' echo "binary" >> $tmpfile &&'
+        ' echo "prompt" >> $tmpfile &&'
+        ' echo "put {input} $(basename {input})" >> $tmpfile &&'
+        ' echo "bye" >> $tmpfile &&'
+        ' echo "temporary file is $tmpfile" 2> {log} 1>&2 &&'
+        " cat $tmpfile"
+        " | ftp"
+        " -n {config[credentials][backup][host]}"
+        " 2>> {log}"
+        " && echo 'transfer completed' > {output}"
+        " && rm -f $tmpfile"
+
+        # ftp -n $HOST <<EOS
+        # quote USER $USER
+        # quote PASS $PASSWD
+        # cd array1/Sequencing_Backups/Illumina_HiSeq
+        # binary
+        # prompt
+        # put $RUNNAME.7z
+        # bye
+        # EOS
+
+
+rule backup_validate:
+    # Realign the the reads
+    input:
+        "{prefix}%s%s/{run}.done" % (config['dirs']['intermediate'], config['stepnames']['backup_transfer'])
+    output:
+        "{prefix}%s%s/{run}.done" % (config['dirs']['intermediate'], config['stepnames']['backup_validate'])
+    log:
+        "{prefix}%s%s/{run}.log" % (config['dirs']['logs'], config['stepnames']['backup_validate'])
+    benchmark:
+        "{prefix}%s%s/{run}.benchmark" % (config['dirs']['benchmarks'], config['stepnames']['backup_validate'])
+    threads:
+        1
+    params:
+        recipient=config['emails']['backup_validated'].split(',')[0],
+        suggested_recipients='\n'.join(config['emails']['backup_validated'].split(',')[1:])
+    shell:
+        "mkdir -p {config[dirs][tmpdir]} && "
+        "tmpdir=$(mktemp --tmpdir={config[dirs][tmpdir]} -d) &&"
+        "tmpfile=$(mktemp) &&"
+        ' echo "quote USER {config[credentials][backup][username]}" > $tmpfile &&'
+        ' echo "quote PASS {config[credentials][backup][password]}" >> $tmpfile &&'
+        ' echo "cd {config[credentials][backup][targetdirectory]}" >> $tmpfile &&'
+        ' echo "binary" >> $tmpfile &&'
+        ' echo "prompt" >> $tmpfile &&'
+        ' echo "get {wildcards.run}.7z $tmpdir/{wildcards.run}.7z" >> $tmpfile &&'
+        ' echo "bye" >> $tmpfile &&'
+        ' echo "temporary file is $tmpfile" 2> {log} 1>&2 &&'
+        " cat $tmpfile"
+        " | ftp"
+        " -n {config[credentials][backup][host]}"
+        " 2>> {log}"
+        " && cd $tmpdir/ && 7za t {wildcards.run}.7z | tail >> {log}"
+        " && echo 'backup of {wildcards.run} validated' > {output}"
+        " && rm -f $tmpfile"
+        " && rm -rf $tmpdir"
+        " && echo 'suggested recipients:\n{params.suggested_recipients}\n\nHi there,\n\nthis is an automated message from {config[name_program]}.\n\nIllumina raw data for run {wildcards.run} have been successfully transferred to the backup NAS {config[credentials][backup][host]} and double checked.\nYou can now safely delete those data from the sequencing PC to free up space for the next run.\n\nHave a nice day!' | mail -s '[{config[name_program]}] backup complete for {wildcards.run}' {params.recipient}"
+
+        # BACKUP_CHECK=$(mktemp -d -p . -t ${RUNNAME}_backup_check.XXXXXX)
+        # TEMPFILES+=( "$PWD/$BACKUP_CHECK" )
+        # cd $BACKUP_CHECK
+        # # fetch the Backup from NAS to make sure this copy is valid!
+        # echo "### $(date +"%d.%m.%Y %H:%M:%S") ### Restoring backup from NAS to check consistency."  | tee -a $LOGFILE
+        # ftp -n $HOST <<EOS
+        # quote USER $USER
+        # quote PASS $PASSWD
+        # cd array1/Sequencing_Backups/Illumina_HiSeq
+        # binary
+        # prompt
+        # get $RUNNAME.7z
+        # bye
+        # EOS
+        # echo "### $(date +"%d.%m.%Y %H:%M:%S") ### (Back)Transfer done; Checking archive consistency..." | tee -a $LOGFILE
+        # 7za t $RUNNAME.7z | tail  | tee -a $LOGFILE

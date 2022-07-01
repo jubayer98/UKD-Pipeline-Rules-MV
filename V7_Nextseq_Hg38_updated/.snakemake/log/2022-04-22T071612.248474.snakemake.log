@@ -1,0 +1,18 @@
+KeyboardInterrupt in line 22 of /home/yasinl/Deya/Snakefile.
+  File "/home/yasinl/Deya/Snakefile", line 22, in <module>
+  File "/home/yasinl/Deya/scripts/parse_samplesheet.py", line 245, in get_global_samplesheets
+  File "/home/yasinl/Deya/scripts/parse_samplesheet.py", line 29, in parse_samplesheet
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 702, in parser_f
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 435, in _read
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 1154, in read
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/frame.py", line 392, in __init__
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/internals/construction.py", line 177, in init_dict
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/series.py", line 207, in __init__
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/series.py", line 308, in _init_dict
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/series.py", line 3738, in reindex
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/generic.py", line 4356, in reindex
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/generic.py", line 4369, in _reindex_axes
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/indexes/base.py", line 3128, in reindex
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/indexes/base.py", line 4067, in equals
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/dtypes/missing.py", line 391, in array_equivalent
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/numpy/core/numeric.py", line 469, in asarray

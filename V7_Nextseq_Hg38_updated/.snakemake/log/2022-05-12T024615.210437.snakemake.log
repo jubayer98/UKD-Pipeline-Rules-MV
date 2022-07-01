@@ -1,0 +1,477 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	xenograft_check
+	check_coverage
+
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cluster nodes: 50
+Job counts:
+	count	jobs
+	9	MBC_remove_duplicates
+	9	add_UMI_R1
+	9	add_UMI_R3
+	9	bwa
+	9	gatk4_ApplyBQSR
+	9	gatk4_BaseRecalibrator
+	9	intersect
+	9	qualimap
+	9	sam_cleanup
+	9	samtools_index
+	9	samtools_index_sort
+	9	trim
+	108
+
+[Thu May 12 02:46:37 2022]
+rule add_UMI_R1:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R1.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f.log
+    jobid: 102
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0472_f.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R1_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_f
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f.log
+Submitted job 102 with external jobid '3379470.hpc-batch'.
+
+[Thu May 12 02:46:37 2022]
+rule add_UMI_R3:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f.log
+    jobid: 103
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0472_f.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R3_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_f
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f.log
+Submitted job 103 with external jobid '3379471.hpc-batch'.
+
+[Thu May 12 02:46:37 2022]
+rule add_UMI_R1:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f.log
+    jobid: 106
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0479_f.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0479_f
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f.log
+Submitted job 106 with external jobid '3379472.hpc-batch'.
+
+[Thu May 12 02:46:37 2022]
+rule add_UMI_R1:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R1.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m.log
+    jobid: 104
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0476_m.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R1_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_m
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m.log
+Submitted job 104 with external jobid '3379473.hpc-batch'.
+
+[Thu May 12 02:46:37 2022]
+rule add_UMI_R3:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c.log
+    jobid: 91
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0315_c.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R3_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0315_c
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c.log
+Submitted job 91 with external jobid '3379474.hpc-batch'.
+
+[Thu May 12 02:46:37 2022]
+rule add_UMI_R3:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f.log
+    jobid: 107
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0479_f.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R3_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0479_f
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f.log
+Submitted job 107 with external jobid '3379475.hpc-batch'.
+
+[Thu May 12 02:46:37 2022]
+rule add_UMI_R3:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m.log
+    jobid: 105
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0476_m.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R3_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_m
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m.log
+Submitted job 105 with external jobid '3379476.hpc-batch'.
+
+[Thu May 12 02:46:37 2022]
+rule add_UMI_R3:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c.log
+    jobid: 97
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0472_c.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R3_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_c
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c.log
+Submitted job 97 with external jobid '3379477.hpc-batch'.
+
+[Thu May 12 02:46:37 2022]
+rule add_UMI_R1:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f.log
+    jobid: 92
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0476_f.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_f
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f.log
+Submitted job 92 with external jobid '3379478.hpc-batch'.
+
+[Thu May 12 02:46:37 2022]
+rule add_UMI_R1:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R1.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c.log
+    jobid: 90
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0315_c.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R1_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0315_c
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c.log
+Submitted job 90 with external jobid '3379479.hpc-batch'.
+
+[Thu May 12 02:46:38 2022]
+rule add_UMI_R3:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m.log
+    jobid: 95
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0315_m.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R3_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0315_m
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m.log
+Submitted job 95 with external jobid '3379480.hpc-batch'.
+
+[Thu May 12 02:46:38 2022]
+rule add_UMI_R3:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f.log
+    jobid: 93
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0476_f.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_f
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f.log
+Submitted job 93 with external jobid '3379481.hpc-batch'.
+
+[Thu May 12 02:46:38 2022]
+rule add_UMI_R1:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R1.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c.log
+    jobid: 96
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0472_c.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R1_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_c
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c.log
+Submitted job 96 with external jobid '3379482.hpc-batch'.
+
+[Thu May 12 02:46:38 2022]
+rule add_UMI_R1:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R1.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c.log
+    jobid: 98
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0476_c.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R1_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_c
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c.log
+Submitted job 98 with external jobid '3379483.hpc-batch'.
+
+[Thu May 12 02:46:38 2022]
+rule add_UMI_R1:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R1.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m.log
+    jobid: 94
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0315_m.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R1_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0315_m
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m.log
+Submitted job 94 with external jobid '3379484.hpc-batch'.
+
+[Thu May 12 02:46:38 2022]
+rule add_UMI_R3:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c.log
+    jobid: 99
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0476_c.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R3_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_c
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c.log
+Submitted job 99 with external jobid '3379485.hpc-batch'.
+
+[Thu May 12 02:46:38 2022]
+rule add_UMI_R3:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R3.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m.log
+    jobid: 101
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0472_m.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R3_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_m
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m.log
+Submitted job 101 with external jobid '3379486.hpc-batch'.
+
+[Thu May 12 02:46:38 2022]
+rule add_UMI_R1:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R1.fastq.gz, /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R2.fastq.gz
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m.log
+    jobid: 100
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/035_rejoin_samples/Keimbahn/KB0472_m.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R1_UMI.fastq.gz
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0472_m
+
+conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m.log
+Submitted job 100 with external jobid '3379487.hpc-batch'.
+[Thu May 12 02:47:13 2022]
+Error in rule add_UMI_R3:
+    jobid: 101
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m.log
+        (exited with non-zero exit code)
+    cluster_jobid: 3379486.hpc-batch
+
+Error executing rule add_UMI_R3 on cluster (jobid: 101, external: 3379486.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.hr789zsl/snakejob.add_UMI_R3.101.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 02:47:26 2022]
+Error in rule add_UMI_R1:
+    jobid: 102
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f.log
+        (exited with non-zero exit code)
+    cluster_jobid: 3379470.hpc-batch
+
+Error executing rule add_UMI_R1 on cluster (jobid: 102, external: 3379470.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.hr789zsl/snakejob.add_UMI_R1.102.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 02:47:27 2022]
+Error in rule add_UMI_R3:
+    jobid: 103
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_f_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_f.log
+        (exited with non-zero exit code)
+    cluster_jobid: 3379471.hpc-batch
+
+Error executing rule add_UMI_R3 on cluster (jobid: 103, external: 3379471.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.hr789zsl/snakejob.add_UMI_R3.103.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 02:47:29 2022]
+Error in rule add_UMI_R1:
+    jobid: 106
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f.log
+        (exited with non-zero exit code)
+    cluster_jobid: 3379472.hpc-batch
+
+Error executing rule add_UMI_R1 on cluster (jobid: 106, external: 3379472.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.hr789zsl/snakejob.add_UMI_R1.106.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 02:47:31 2022]
+Error in rule add_UMI_R1:
+    jobid: 104
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m.log
+        (exited with non-zero exit code)
+    cluster_jobid: 3379473.hpc-batch
+
+Error executing rule add_UMI_R1 on cluster (jobid: 104, external: 3379473.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.hr789zsl/snakejob.add_UMI_R1.104.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 02:47:32 2022]
+Error in rule add_UMI_R3:
+    jobid: 91
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c.log
+        (exited with non-zero exit code)
+    cluster_jobid: 3379474.hpc-batch
+
+Error executing rule add_UMI_R3 on cluster (jobid: 91, external: 3379474.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.hr789zsl/snakejob.add_UMI_R3.91.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 02:47:34 2022]
+Error in rule add_UMI_R3:
+    jobid: 107
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0479_f_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0479_f.log
+        (exited with non-zero exit code)
+    cluster_jobid: 3379475.hpc-batch
+
+Error executing rule add_UMI_R3 on cluster (jobid: 107, external: 3379475.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.hr789zsl/snakejob.add_UMI_R3.107.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 02:47:36 2022]
+Error in rule add_UMI_R3:
+    jobid: 105
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_m_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_m.log
+        (exited with non-zero exit code)
+    cluster_jobid: 3379476.hpc-batch
+
+Error executing rule add_UMI_R3 on cluster (jobid: 105, external: 3379476.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.hr789zsl/snakejob.add_UMI_R3.105.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 02:47:37 2022]
+Error in rule add_UMI_R3:
+    jobid: 97
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c.log
+        (exited with non-zero exit code)
+    cluster_jobid: 3379477.hpc-batch
+
+Error executing rule add_UMI_R3 on cluster (jobid: 97, external: 3379477.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.hr789zsl/snakejob.add_UMI_R3.97.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 02:47:39 2022]
+Error in rule add_UMI_R1:
+    jobid: 92
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f.log
+        (exited with non-zero exit code)
+    cluster_jobid: 3379478.hpc-batch
+
+Error executing rule add_UMI_R1 on cluster (jobid: 92, external: 3379478.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.hr789zsl/snakejob.add_UMI_R1.92.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 02:47:40 2022]
+Error in rule add_UMI_R1:
+    jobid: 90
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_c_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_c.log
+        (exited with non-zero exit code)
+    cluster_jobid: 3379479.hpc-batch
+
+Error executing rule add_UMI_R1 on cluster (jobid: 90, external: 3379479.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.hr789zsl/snakejob.add_UMI_R1.90.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 02:47:42 2022]
+Error in rule add_UMI_R3:
+    jobid: 95
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m.log
+        (exited with non-zero exit code)
+    cluster_jobid: 3379480.hpc-batch
+
+Error executing rule add_UMI_R3 on cluster (jobid: 95, external: 3379480.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.hr789zsl/snakejob.add_UMI_R3.95.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 02:47:44 2022]
+Error in rule add_UMI_R3:
+    jobid: 93
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_f_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_f.log
+        (exited with non-zero exit code)
+    cluster_jobid: 3379481.hpc-batch
+
+Error executing rule add_UMI_R3 on cluster (jobid: 93, external: 3379481.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.hr789zsl/snakejob.add_UMI_R3.93.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 02:47:45 2022]
+Error in rule add_UMI_R1:
+    jobid: 96
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_c_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_c.log
+        (exited with non-zero exit code)
+    cluster_jobid: 3379482.hpc-batch
+
+Error executing rule add_UMI_R1 on cluster (jobid: 96, external: 3379482.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.hr789zsl/snakejob.add_UMI_R1.96.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 02:47:47 2022]
+Error in rule add_UMI_R1:
+    jobid: 98
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c.log
+        (exited with non-zero exit code)
+    cluster_jobid: 3379483.hpc-batch
+
+Error executing rule add_UMI_R1 on cluster (jobid: 98, external: 3379483.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.hr789zsl/snakejob.add_UMI_R1.98.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 02:47:48 2022]
+Error in rule add_UMI_R1:
+    jobid: 94
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0315_m_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0315_m.log
+        (exited with non-zero exit code)
+    cluster_jobid: 3379484.hpc-batch
+
+Error executing rule add_UMI_R1 on cluster (jobid: 94, external: 3379484.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.hr789zsl/snakejob.add_UMI_R1.94.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 02:47:50 2022]
+Error in rule add_UMI_R3:
+    jobid: 99
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R3_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R3.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0476_c_R3_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0476_c.log
+        (exited with non-zero exit code)
+    cluster_jobid: 3379485.hpc-batch
+
+Error executing rule add_UMI_R3 on cluster (jobid: 99, external: 3379485.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.hr789zsl/snakejob.add_UMI_R3.99.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+[Thu May 12 02:47:52 2022]
+Error in rule add_UMI_R1:
+    jobid: 100
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R1_UMI.fastq.gz
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m.log (check log file(s) for error message)
+    shell:
+        conda activate /home/yasinl/miniconda3/envs/UMI; sleep 10s;umi_tools extract --bc-pattern=NNNNNNNNNN --stdin /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R2.fastq.gz --read2-in /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R1.fastq.gz --stdout /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/035_rejoin_samples/Keimbahn/KB0472_m_R1_UMI.fastq.gz --read2-stdout 2> /gpfs/project/projects/spike/AG_Borkhardt/Logs/035_rejoin_samples/Keimbahn/KB0472_m.log
+        (exited with non-zero exit code)
+    cluster_jobid: 3379487.hpc-batch
+
+Error executing rule add_UMI_R1 on cluster (jobid: 100, external: 3379487.hpc-batch, jobscript: /home/yasinl/V7_Nextseq_Hg38/.snakemake/tmp.hr789zsl/snakejob.add_UMI_R1.100.sh). For error details see the cluster log and the log files of the involved rule(s).
+Job failed, going on with independent jobs.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/yasinl/V7_Nextseq_Hg38/.snakemake/log/2022-05-12T024615.210437.snakemake.log

@@ -1,0 +1,4 @@
+ModuleNotFoundError in line 8 of /home/yasinl/Deya/Snakefile:
+No module named 'biom'
+  File "/home/yasinl/Deya/Snakefile", line 8, in <module>
+  File "/home/yasinl/Deya/scripts/utils.py", line 1, in <module>

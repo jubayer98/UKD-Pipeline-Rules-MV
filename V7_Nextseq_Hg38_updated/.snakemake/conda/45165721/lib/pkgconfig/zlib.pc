@@ -1,0 +1,13 @@
+prefix=/gpfs/project/joj02hit/V7_Nextseq_Hg38/.snakemake/conda/45165721
+exec_prefix=/gpfs/project/joj02hit/V7_Nextseq_Hg38/.snakemake/conda/45165721
+libdir=/gpfs/project/joj02hit/V7_Nextseq_Hg38/.snakemake/conda/45165721/lib
+sharedlibdir=/gpfs/project/joj02hit/V7_Nextseq_Hg38/.snakemake/conda/45165721/lib
+includedir=/gpfs/project/joj02hit/V7_Nextseq_Hg38/.snakemake/conda/45165721/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.12
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -lz
+Cflags: -I${includedir}

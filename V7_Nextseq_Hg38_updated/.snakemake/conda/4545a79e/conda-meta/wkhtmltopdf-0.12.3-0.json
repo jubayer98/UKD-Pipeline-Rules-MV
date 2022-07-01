@@ -1,0 +1,92 @@
+{
+  "build": "0",
+  "build_number": 0,
+  "channel": "http://conda.repo.test.hhu.de/bioconda/linux-64",
+  "constrains": [],
+  "depends": [],
+  "extracted_package_dir": "/home/joj02hit/miniconda3/pkgs/wkhtmltopdf-0.12.3-0",
+  "features": "",
+  "files": [
+    "bin/wkhtmltoimage",
+    "bin/wkhtmltopdf",
+    "include/wkhtmltox/dllbegin.inc",
+    "include/wkhtmltox/dllend.inc",
+    "include/wkhtmltox/image.h",
+    "include/wkhtmltox/pdf.h",
+    "lib/libwkhtmltox.so",
+    "lib/libwkhtmltox.so.0",
+    "lib/libwkhtmltox.so.0.12",
+    "lib/libwkhtmltox.so.0.12.3",
+    "share/man/man1/wkhtmltoimage.1.gz",
+    "share/man/man1/wkhtmltopdf.1.gz"
+  ],
+  "fn": "wkhtmltopdf-0.12.3-0.tar.bz2",
+  "license": "LGPLv3",
+  "link": {
+    "source": "/home/joj02hit/miniconda3/pkgs/wkhtmltopdf-0.12.3-0",
+    "type": 1
+  },
+  "md5": "0f058d2b2ea0f1b1a02d0e2fb42e93ee",
+  "name": "wkhtmltopdf",
+  "package_tarball_full_path": "/home/joj02hit/miniconda3/pkgs/wkhtmltopdf-0.12.3-0.tar.bz2",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "bin/wkhtmltoimage",
+        "path_type": "hardlink"
+      },
+      {
+        "_path": "bin/wkhtmltopdf",
+        "path_type": "hardlink"
+      },
+      {
+        "_path": "include/wkhtmltox/dllbegin.inc",
+        "path_type": "hardlink"
+      },
+      {
+        "_path": "include/wkhtmltox/dllend.inc",
+        "path_type": "hardlink"
+      },
+      {
+        "_path": "include/wkhtmltox/image.h",
+        "path_type": "hardlink"
+      },
+      {
+        "_path": "include/wkhtmltox/pdf.h",
+        "path_type": "hardlink"
+      },
+      {
+        "_path": "lib/libwkhtmltox.so",
+        "path_type": "softlink"
+      },
+      {
+        "_path": "lib/libwkhtmltox.so.0",
+        "path_type": "softlink"
+      },
+      {
+        "_path": "lib/libwkhtmltox.so.0.12",
+        "path_type": "softlink"
+      },
+      {
+        "_path": "lib/libwkhtmltox.so.0.12.3",
+        "path_type": "hardlink"
+      },
+      {
+        "_path": "share/man/man1/wkhtmltoimage.1.gz",
+        "path_type": "hardlink"
+      },
+      {
+        "_path": "share/man/man1/wkhtmltopdf.1.gz",
+        "path_type": "hardlink"
+      }
+    ],
+    "paths_version": 1
+  },
+  "requested_spec": "wkhtmltopdf",
+  "sha256": "0ddc4d34bb138539ee4e448456633c84e12867a8d916566dec51594ed9c7886f",
+  "size": 42368573,
+  "subdir": "linux-64",
+  "track_features": "",
+  "url": "http://conda.repo.test.hhu.de/bioconda/linux-64/wkhtmltopdf-0.12.3-0.tar.bz2",
+  "version": "0.12.3"
+}

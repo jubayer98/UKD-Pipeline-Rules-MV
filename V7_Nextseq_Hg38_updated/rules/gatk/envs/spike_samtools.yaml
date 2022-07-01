@@ -1,0 +1,7 @@
+name: spike_samtools
+
+channels:
+  - nodefaults
+  - http://conda.repo.test.hhu.de/bioconda
+dependencies:
+  - samtools =1.11

@@ -1,0 +1,9 @@
+name: bedtools
+
+channels:
+    - nodefaults
+    - http://conda.repo.test.hhu.de/bioconda
+    - http://conda.repo.test.hhu.de/conda-forge
+    - http://conda.repo.test.hhu.de/defaults
+dependencies:
+    - bedtools=2.30.0

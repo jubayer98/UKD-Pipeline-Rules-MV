@@ -1,0 +1,4 @@
+ModuleNotFoundError in line 9 of /gpfs/project/joj02hit/V7_Nextseq_Hg38/Snakefile:
+No module named 'xlsxwriter'
+  File "/gpfs/project/joj02hit/V7_Nextseq_Hg38/Snakefile", line 9, in <module>
+  File "/gpfs/project/joj02hit/V7_Nextseq_Hg38/scripts/reports.py", line 9, in <module>

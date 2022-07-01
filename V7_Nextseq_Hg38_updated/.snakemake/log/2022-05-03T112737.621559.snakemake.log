@@ -1,0 +1,9 @@
+IndexError in line 22 of /home/yasinl/V7_Nextseq_Hg38/Snakefile:
+list index out of range
+  File "/home/yasinl/V7_Nextseq_Hg38/Snakefile", line 22, in <module>
+  File "/home/yasinl/V7_Nextseq_Hg38/scripts/parse_samplesheet.py", line 245, in get_global_samplesheets
+  File "/home/yasinl/V7_Nextseq_Hg38/scripts/parse_samplesheet.py", line 29, in parse_samplesheet
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 702, in parser_f
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 435, in _read
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 1139, in read
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 2033, in read

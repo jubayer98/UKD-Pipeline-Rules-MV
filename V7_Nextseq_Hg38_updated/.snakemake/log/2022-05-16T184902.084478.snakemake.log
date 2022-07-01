@@ -1,0 +1,34 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	check_coverage
+	xenograft_check
+
+Building DAG of jobs...
+Creating conda environment rules/map/envs/spike_map.yaml...
+Downloading remote packages.
+CreateCondaEnvironmentException:
+Could not create conda environment from /home/yasinl/V7_Nextseq_Hg38/rules/map/envs/spike_map.yaml:
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... Finding conflicts:   0%|          | 0/1 [00:00<?, ?it/s]Examining __glibc:   0%|          | 0/1 [00:00<?, ?it/s]                                                        
+Found conflicts! Looking for incompatible packages.
+This can take several minutes.  Press CTRL-C to abort.
+failed
+
+UnsatisfiableError: The following specifications were found to be incompatible with each other:
+
+
+
+Package libzlib conflicts for:
+bwa=0.7.17 -> libzlib[version='>=1.2.11,<1.3.0a0']
+Package libgcc conflicts for:
+bwa=0.7.17 -> libgcc
+Package perl conflicts for:
+bwa=0.7.17 -> perl=5.22.0
+Package libgcc-ng conflicts for:
+bwa=0.7.17 -> libgcc-ng[version='>=10.3.0|>=4.9|>=7.3.0|>=9.3.0']
+Package zlib conflicts for:
+bwa=0.7.17 -> zlib[version='1.2.11.*|1.2.8.*|>=1.2.11,<1.3.0a0']
+
+

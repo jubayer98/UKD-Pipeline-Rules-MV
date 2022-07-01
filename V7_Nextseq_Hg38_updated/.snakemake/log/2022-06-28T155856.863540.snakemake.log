@@ -1,0 +1,13 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	check_coverage
+	xenograft_check
+
+Building DAG of jobs...
+InputFunctionException in line 86 of /gpfs/project/joj02hit/V7_Nextseq_Hg38/rules/gatk/Snakefile:
+ValueError: Missing project definition for sample 'Keimbahn/KKB0486_f'.
+Wildcards:
+prefix=/gpfs/project/projects/spike/AG_Borkhardt/
+sample=Keimbahn/KKB0486_f

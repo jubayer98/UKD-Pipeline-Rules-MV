@@ -1,0 +1,10 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	xenograft_check
+	check_coverage
+
+Building DAG of jobs...
+MissingRuleException:
+No rule to produce /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/091_bamstat/Keimbahn/KB0357_m.bamstat.tsv (if you use input functions make sure that they don't raise unexpected exceptions).

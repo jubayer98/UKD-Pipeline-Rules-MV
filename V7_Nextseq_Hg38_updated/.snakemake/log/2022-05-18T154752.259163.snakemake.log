@@ -1,0 +1,11 @@
+KeyboardInterrupt in line 22 of /home/yasinl/V7_Nextseq_Hg38/Snakefile.
+  File "/home/yasinl/V7_Nextseq_Hg38/Snakefile", line 22, in <module>
+  File "/home/yasinl/V7_Nextseq_Hg38/scripts/parse_samplesheet.py", line 245, in get_global_samplesheets
+  File "/home/yasinl/V7_Nextseq_Hg38/scripts/parse_samplesheet.py", line 37, in parse_samplesheet
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 702, in parser_f
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 429, in _read
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 895, in __init__
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 1122, in _make_engine
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/io/parsers.py", line 1853, in __init__
+  File "pandas/_libs/parsers.pyx", line 490, in pandas._libs.parsers.TextReader.__cinit__
+  File "/home/yasinl/miniconda3/lib/python3.7/site-packages/pandas/core/dtypes/common.py", line 1981, in pandas_dtype

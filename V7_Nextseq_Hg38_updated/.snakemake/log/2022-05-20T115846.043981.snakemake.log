@@ -1,0 +1,32 @@
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule demultiplex is only valid for outputs, not inputs.
+The flag 'directory' used in rule aggregate_undetermined_filesizes is only valid for outputs, not inputs.
+localrules directive specifies rules that are not present in the Snakefile:
+	xenograft_check
+	check_coverage
+
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cluster nodes: 50
+Job counts:
+	count	jobs
+	1	qualimap
+	1
+
+[Fri May 20 11:59:07 2022]
+rule qualimap:
+    input: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_f.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam, /gpfs/project/projects/spike/AG_Borkhardt/References/Target_Region_Hg38_V7_qualimap.bed
+    output: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0476_f/qualimapReport.html
+    log: /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0476_f.log
+    jobid: 4
+    benchmark: /gpfs/project/projects/spike/AG_Borkhardt/Benchmarks/087_qualimap/Hg38/Keimbahn/KB0476_f.benchmark
+    reason: Missing output files: /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0476_f/qualimapReport.html
+    wildcards: prefix=/gpfs/project/projects/spike/AG_Borkhardt/, sample=Keimbahn/KB0476_f
+    threads: 6
+
+qualimap bamqc -bam /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/084_gatk4_ApplyBQSR/Hg38/Keimbahn/KB0476_f.GATK4.Hg38.apBQSR.reCal.UMI.target.nodup.srt.bam --feature-file /gpfs/project/projects/spike/AG_Borkhardt/References/Target_Region_Hg38_V7_qualimap.bed --collect-overlap-pairs --genome-gc-distr HUMAN -nr 5000 --java-mem-size=20G -nt 6 -outformat HTML -outdir /gpfs/project/projects/spike/AG_Borkhardt/Intermediate/087_qualimap/Hg38/Keimbahn/KB0476_f/ > /gpfs/project/projects/spike/AG_Borkhardt/Logs/087_qualimap/Hg38/Keimbahn/KB0476_f.log
+Submitted job 4 with external jobid '3474329.hpc-batch'.
+[Fri May 20 12:26:57 2022]
+Finished job 4.
+1 of 1 steps (100%) done
+Complete log: /home/yasinl/V7_Nextseq_Hg38/.snakemake/log/2022-05-20T115846.043981.snakemake.log
